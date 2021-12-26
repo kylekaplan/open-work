@@ -26,8 +26,7 @@
 }
 
 .dogeImg {
-  position: absolute;
-  height: 210px;
+  position: relative;
   bottom: 0px;
   right: 0px;
   transform: rotate(7deg);

@@ -1,9 +1,19 @@
 import {
   ChakraProvider,
   extendTheme,
+  Box,
+  Flex,
 } from "@chakra-ui/react"
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+} from 'react-router-dom'
 import './app.css';
+import { ColorModeSwitcher } from "./ColorModeSwitcher";
+import Challenge from "./pages/Challenge";
 import Home from "./pages/Home"
+import NotFound from "./pages/NotFound";
 
 const colors = {
   // brand: {
@@ -17,6 +27,18 @@ const theme = extendTheme({ colors })
 
 export const App = () => (
   <ChakraProvider theme={theme}>
-    <Home />
+    <Router>
+      <Box p={3}>
+        <Flex justify="end">
+          <ColorModeSwitcher />
+        </Flex>
+        <Routes>
+          <Route path="/" element={<Home/>}/>
+          <Route path="/challenge" element={<Challenge/>}/>
+          {/* <Route path="/recovery-password" element={<RecoveryPassword/>}/> */}
+          <Route path="*" element={<NotFound/>}/>
+        </Routes>
+      </Box>
+    </Router>
   </ChakraProvider>
 )

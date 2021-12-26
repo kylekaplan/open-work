@@ -1,5 +1,6 @@
 import {
   Box,
+  Flex,
   Text,
   Button,
   VStack,
@@ -7,38 +8,42 @@ import {
   Grid,
   Heading,
   Icon,
+  Image,
+  useBreakpointValue,
 } from "@chakra-ui/react";
+import {
+  Link
+} from 'react-router-dom';
 import { AiOutlineArrowRight } from 'react-icons/ai';
-import { ColorModeSwitcher } from "../../ColorModeSwitcher";
 import './home.css';
 import muchWow from '../../assets/images/much_wow.jpeg';
 
 const Home = () => {
+  const variant = useBreakpointValue({ base: 'outline', md: 'solid' })
   return (
-    <Box textAlign="center" fontSize="xl" className='background5'>
-      <Grid minH="68vh" p={3}>
-        <ColorModeSwitcher justifySelf="flex-end" />
-        <VStack spacing={3} width="5xl" margin="0 auto" justifyContent="center">
+    <Box className='background5'>
+      <VStack
+        spacing={3}
+        minH="66vh"
+        textAlign="center"
+        justifyContent="center"
+      >
         <Heading
           fontSize='6xl'
           fontWeight='extrabold'
           // fontFamily='"Baloo Bhaijaan 2"'
           className='headerText'
         >
-            Earn Crypto by Making Memes
-          </Heading>
-          <Text
-            color='gray.350'
-            fontSize="3xl"
-          >
-            The best meme wins. All memes are open source.
-          </Text>
-          <img
-            src={muchWow}
-            className="dogeImg"
-            alt="Doge meme"
-          />
-          <Stack direction='row' spacing={4} style={{ marginTop: '30px' }}>
+          Earn Crypto by Making Memes
+        </Heading>
+        <Text
+          color='gray.350'
+          fontSize="3xl"
+        >
+          The best meme wins. All memes are open source.
+        </Text>
+        <Stack direction='row' spacing={4} style={{ marginTop: '30px' }}>
+          <Link to="/challenge">
             <Button
               rightIcon={<Icon as={AiOutlineArrowRight} />}
               // colorScheme="#48BB78"
@@ -49,14 +54,19 @@ const Home = () => {
               size="lg"
               height='56px'
               className="ctaButton"
-              // _hover={{ transform: "translateX(10px)" }}
             >
               Get Started
             </Button>
-          </Stack>
-        </VStack>
-      </Grid>
-      <Box height="30vh" />
+          </Link>
+        </Stack>
+        <Image
+          src={muchWow}
+          className="dogeImg"
+          alt="Doge meme"
+          width={{ base: 290, sm: 290, md: 290, lg: 333, xl: 333 }}
+        />
+      </VStack>
+      <VStack minH={{ base: '38vh', sm: "48vh", md: "30vh", lg: "22vh", xl: "22vh" }} />
     </Box>
   );
 }
