@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import {
   Box,
   Flex,
@@ -5,12 +6,11 @@ import {
   Button,
   VStack,
   Stack,
-  Grid,
   Heading,
   Icon,
   Image,
-  useBreakpointValue,
 } from "@chakra-ui/react";
+import Parallax from 'parallax-js'
 import {
   Link
 } from 'react-router-dom';
@@ -19,9 +19,34 @@ import './home.css';
 import muchWow from '../../assets/images/much_wow.jpeg';
 
 const Home = () => {
-  const variant = useBreakpointValue({ base: 'outline', md: 'solid' })
+
+  useEffect(() => {
+    var scene = document.getElementById('scene');
+    var parallaxInstance = new Parallax(scene, {
+      relativeInput: true
+    });    
+  }, []);
+
   return (
-    <Box className='background5'>
+    <>
+    {/* Parallax background image */}
+    <Box
+      id="scene"
+      data-relative-input="true"
+      position="absolute"
+      top="0"
+      bottom="0"
+      right="0"
+      left="0"
+    >
+      <Box
+        minH="90vh"
+        data-depth="0.2"
+        className='background5'
+      />
+    </Box>
+    {/* Start of regular content */}
+    <Box>
       <VStack
         spacing={3}
         minH="66vh"
@@ -66,8 +91,11 @@ const Home = () => {
           width={{ base: 290, sm: 290, md: 290, lg: 333, xl: 333 }}
         />
       </VStack>
-      <VStack minH={{ base: '38vh', sm: "48vh", md: "30vh", lg: "22vh", xl: "22vh" }} />
+      <VStack
+        minH={{ base: '35vh', sm: "35vh", md: "23vh", lg: "23vh", xl: "23vh" }}
+      />
     </Box>
+    </>
   );
 }
 
