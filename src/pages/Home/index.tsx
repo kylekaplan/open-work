@@ -1,7 +1,6 @@
 import { useEffect } from 'react';
 import {
   Box,
-  Flex,
   Text,
   Button,
   VStack,
@@ -22,7 +21,7 @@ const Home = () => {
 
   useEffect(() => {
     var scene = document.getElementById('scene');
-    var parallaxInstance = new Parallax(scene, {
+    new Parallax(scene, {
       relativeInput: true
     });    
   }, []);

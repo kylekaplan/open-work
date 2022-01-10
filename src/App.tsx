@@ -9,6 +9,8 @@ import {
   Route,
   Routes,
 } from 'react-router-dom'
+import 'photoswipe/dist/photoswipe.css'
+import 'photoswipe/dist/default-skin/default-skin.css'
 import './app.css';
 import { ColorModeSwitcher } from "./ColorModeSwitcher";
 import Challenge from "./pages/Challenge";
