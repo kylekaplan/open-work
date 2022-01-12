@@ -4,6 +4,8 @@ import {
   Heading,
   VStack,
 } from '@chakra-ui/react';
+import Uploader from 'rsuite/Uploader';
+import 'rsuite/dist/rsuite.min.css';
 import './challenge.css';
 import img1 from '../../assets/images/ultra-sound-money/1.jpeg'
 import img2 from '../../assets/images/ultra-sound-money/2.jpeg'
@@ -61,7 +63,9 @@ const Challenge = () => {
         </Text>
         <ImageExamples imgs={imgs} />
       </VStack>
-
+      <Uploader className="rs-theme-dark" action="//jsonplaceholder.typicode.com/posts/" draggable>
+        <div style={{ lineHeight: '200px' }}>Click or Drag files to this area to upload</div>
+      </Uploader>
     </Box>
   );
 }
