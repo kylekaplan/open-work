@@ -3,9 +3,12 @@ import {
   Text,
   Heading,
   VStack,
+  Accordion,
+  AccordionItem,
+  AccordionButton,
+  AccordionIcon,
+  AccordionPanel,
 } from '@chakra-ui/react';
-import Uploader from 'rsuite/Uploader';
-import 'rsuite/dist/rsuite.min.css';
 import './challenge.css';
 import img1 from '../../assets/images/ultra-sound-money/1.jpeg'
 import img2 from '../../assets/images/ultra-sound-money/2.jpeg'
@@ -13,6 +16,7 @@ import img1Thumbnail from '../../assets/images/ultra-sound-money/1thumbnail.jpeg
 import img2Thumbnail from '../../assets/images/ultra-sound-money/2thumbnail.jpeg';
 import ImageExamples from './ImageExamples';
 import TimeLeft from '../../molecules/TimeLeft';
+import Uploader from './Uploader';
 
 const imgs = [
   {
@@ -34,38 +38,71 @@ const Challenge = () => {
     <Box m="0 10%">
       <Box height={30} />
       <VStack align="start" spacing="0px">
-        <Heading fontSize="4xl" fontWeight="bold">
+        <Heading
+          fontSize="4xl"
+          fontWeight="bold"
+          fontFamily="'Work Sans', sans-serif;"
+        >
           Create an original Ultra Sound Money meme.
         </Heading>
         <Text>
           By: kylekaplan.eth
         </Text>
+        {/* <Text>
+          🏆 &nbsp; Ξ0.01 ETH
+        </Text> */}
       </VStack>
       <Text marginTop="30px" fontSize="2xl">
         The meme must be in favor of the Ultra Sound Money idea and ideally funny and/or educational.
       </Text>
-      <VStack marginTop="30px" fontSize="lg" spacing="5px" align="start">
+      <Accordion mt={14} mb={10}>
+        <AccordionItem>
+          <h2>
+            <AccordionButton>
+              <Box flex='1' textAlign='left'>
+                DETAILS
+              </Box>
+              <AccordionIcon />
+            </AccordionButton>
+          </h2>
+          <AccordionPanel pb={4}>
+          <VStack fontSize="lg" spacing="5px" align="start">
+            <Text>
+              🏆 &nbsp; Ξ0.01 ETH
+            </Text>
+            <Text>
+              📅 &nbsp;Jan. 7th - 14th
+            </Text>
+            <Text>
+              ⏳ &nbsp;
+              <TimeLeft date={Date.now() + 100000000} />
+            </Text>
+          </VStack>
+          </AccordionPanel>
+        </AccordionItem>
+      </Accordion>
+      <Text fontSize="2xl">
+        <b>Good Examples:</b>
+      </Text>
+      <ImageExamples imgs={imgs} />
+      {/* <VStack marginTop="30px" fontSize="lg" spacing="5px" align="start">
         <Text>
-          <b>Prize:</b> 0.01 ETH
+          🏆 &nbsp; Ξ0.01 ETH
         </Text>
         <Text>
-          <b>Format:</b> JPEG, PNG, or GIF
+          📅 &nbsp;Jan. 7th - 14th
         </Text>
         <Text>
-          <b>Start date:</b> January 7th, 2022 UTC
-        </Text>
-        <Text>
-          <b>Time Left:</b>
+          ⏳ &nbsp;
           <TimeLeft date={Date.now() + 100000000} />
         </Text>
-        <Text>
-          <b>Examples of existing memes:</b>
+        <Text fontSize="2xl">
+          <b>Good Examples:</b>
         </Text>
         <ImageExamples imgs={imgs} />
-      </VStack>
-      <Uploader className="rs-theme-dark" action="//jsonplaceholder.typicode.com/posts/" draggable>
-        <div style={{ lineHeight: '200px' }}>Click or Drag files to this area to upload</div>
-      </Uploader>
+      </VStack> */}
+      <Box height={75} />
+      <Uploader />
     </Box>
   );
 }
