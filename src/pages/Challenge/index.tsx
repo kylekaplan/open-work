@@ -1,4 +1,5 @@
 import {
+  useColorModeValue,
   Box,
   Text,
   Heading,
@@ -20,6 +21,7 @@ import img2Thumbnail from '../../assets/images/ultra-sound-money/2thumbnail.jpeg
 import ImageExamples from './ImageExamples';
 import TimeLeft from '../../molecules/TimeLeft';
 import Uploader from './Uploader';
+import BorderedBox from '../../atoms/BorderedBox';
 
 const imgs = [
   {
@@ -38,16 +40,16 @@ const imgs = [
 
 const Challenge = () => {
   return (
-    <Box m="30px 30px">
+    <Box m="30px 85px">
       <Flex>
-        <Box size="30vw" bg="black" p={4} alignItems="start" justifyContent="start">
+        <Box width="40vw" bg="black" p={4} alignItems="start" justifyContent="start">
           <Text><b>Title:</b> Create an original Ultra Sound Money meme.</Text>
           <Text><b>Posted by:</b> kylekaplan.eth</Text>
           <Text><b>Start Date:</b> January 7th, 2022</Text>
           <Text><b>End Date:</b> January 14th, 2022</Text>
           <Text><b>Prize amount:</b> 0.01 ETH</Text>
         </Box>
-        <Box p={5}>
+        <Box ml={30}>
           <VStack align="start" spacing={3}>
           <Text>
             kylekaplan.eth
@@ -66,20 +68,20 @@ const Challenge = () => {
             🏆 &nbsp; Ξ0.01 ETH
           </Text> */}
         </VStack>
-        <Box mt={10} border="1px" borderRadius={8}>
-            <Box p="10px 5px">
-              <Text>
-                Challenge ends January 14, 2022 at 6:15am EST
-              </Text>
-              <TimeLeft date={Date.now() + 100000000} />
-            </Box>
-            <Divider />
-            <Box p="10px 5px">
-              <Text>
-                Prize: 0.01 ETH
-              </Text>
-            </Box>
+        <BorderedBox mt={10}>
+          <Box p={30} fontFamily="sans-serif">
+            <Text>
+              Challenge ends January 14, 2022 at 6:15am EST
+            </Text>
+            <TimeLeft date={Date.now() + 100000000} />
           </Box>
+          <Divider />
+          <Box p={30}>
+            <Text>
+              Prize: 0.01 ETH
+            </Text>
+          </Box>
+        </BorderedBox>
         <Accordion mt={14} mb={10}>
           <AccordionItem>
             <h2>
