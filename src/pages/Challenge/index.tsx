@@ -10,9 +10,13 @@ import {
   AccordionIcon,
   AccordionPanel,
   Flex,
-  Container,
+  Button,
   Divider,
+  HStack,
 } from '@chakra-ui/react';
+import { FaEthereum, FaClipboardCheck } from 'react-icons/fa';
+import { AiOutlineAlignLeft } from 'react-icons/ai';
+import { BiBadgeCheck } from 'react-icons/bi';
 import './challenge.css';
 import img1 from '../../assets/images/ultra-sound-money/1.jpeg'
 import img2 from '../../assets/images/ultra-sound-money/2.jpeg'
@@ -22,6 +26,7 @@ import ImageExamples from './ImageExamples';
 import TimeLeft from '../../molecules/TimeLeft';
 import Uploader from './Uploader';
 import BorderedBox from '../../atoms/BorderedBox';
+import BorderedAccordion from '../../atoms/BorderedAccordion';
 
 const imgs = [
   {
@@ -42,7 +47,7 @@ const Challenge = () => {
   return (
     <Box m="30px 85px">
       <Flex>
-        <Box width="40vw" bg="black" p={4} alignItems="start" justifyContent="start">
+        <Box width="40vw" bg="black" color="whiteAlpha.800" p={4} alignItems="start" justifyContent="start">
           <Text><b>Title:</b> Create an original Ultra Sound Money meme.</Text>
           <Text><b>Posted by:</b> kylekaplan.eth</Text>
           <Text><b>Start Date:</b> January 7th, 2022</Text>
@@ -50,73 +55,107 @@ const Challenge = () => {
           <Text><b>Prize amount:</b> 0.01 ETH</Text>
         </Box>
         <Box ml={30}>
-          <VStack align="start" spacing={3}>
-          <Text>
-            kylekaplan.eth
-          </Text>
-          <Heading
-            fontSize="4xl"
-            fontWeight="bold"
-            fontFamily="'Work Sans', sans-serif;"
+          <VStack align="start" spacing={5}>
+            <Heading
+              fontSize="4xl"
+              fontWeight="bold"
+              fontFamily="'Work Sans', sans-serif;"
+            >
+              Create an original Ultra Sound Money meme.
+            </Heading>
+            <Text
+              fontSize="md"
+              fontFamily="'Poppins', sans-serif"
+              // color={useColorModeValue("gray.900", "#2081e2")}
+              // color="#2081e2"
+              // color="teal.200"
+            >
+              By: <Text as="span" color={useColorModeValue("teal.500", "teal.200")}>kylekaplan.eth</Text>
+            </Text>
+          </VStack>
+          <BorderedBox
+            mt={8}
+            fontFamily="'Poppins', sans-serif"
           >
-            Create an original Ultra Sound Money meme.
-          </Heading>
-          {/* <Text>
-            By: kylekaplan.eth
-          </Text> */}
-          {/* <Text>
-            🏆 &nbsp; Ξ0.01 ETH
-          </Text> */}
-        </VStack>
-        <BorderedBox mt={10}>
-          <Box p={30} fontFamily="sans-serif">
-            <Text>
-              Challenge ends January 14, 2022 at 6:15am EST
-            </Text>
-            <TimeLeft date={Date.now() + 100000000} />
-          </Box>
-          <Divider />
-          <Box p={30}>
-            <Text>
-              Prize: 0.01 ETH
-            </Text>
-          </Box>
-        </BorderedBox>
-        <Accordion mt={14} mb={10}>
-          <AccordionItem>
-            <h2>
-              <AccordionButton>
-                <Box flex='1' textAlign='left'>
-                  DETAILS
-                </Box>
-                <AccordionIcon />
-              </AccordionButton>
-            </h2>
-            <AccordionPanel pb={4}>
-            <VStack fontSize="lg" spacing="5px" align="start">
-              <Text>
-                🏆 &nbsp; Ξ0.01 ETH
+            <Box p="20px">
+              <Text fontSize={16}>
+                Challenge ends January 14, 2022 at 6:15am EST
               </Text>
+              <TimeLeft date={Date.now() + 1000000000} />
+            </Box>
+            <Divider />
+            <Box
+              p={30}
+              bg={useColorModeValue("gray.100", "whiteAlpha.100")}
+              borderBottomRadius={8}
+            >
               <Text>
-                📅 &nbsp;Jan. 7th - 14th
+                Challenge Prize:
               </Text>
-              <Text>
-                ⏳ &nbsp;
-                <TimeLeft date={Date.now() + 100000000} />
-              </Text>
-            </VStack>
-            </AccordionPanel>
-          </AccordionItem>
-        </Accordion>
+              <HStack fontSize="30px">
+                <FaEthereum />
+                <Text>0.01</Text>
+              </HStack>
+              <Button colorScheme="teal" mt={4}>
+                Submit your meme
+              </Button>
+            </Box>
+          </BorderedBox>
         </Box>
       </Flex>
-      <Text marginTop="30px" fontSize="2xl">
-        The meme must be in favor of the Ultra Sound Money idea and ideally funny and/or educational.
-      </Text>
-      <Text fontSize="2xl">
-        <b>Good Examples:</b>
-      </Text>
-      <ImageExamples imgs={imgs} />
+      <Box height={30} />
+      <BorderedAccordion defaultIndex={[0]} allowMultiple>
+        <AccordionItem>
+          <h2>
+            <AccordionButton>
+              <Box
+                flex='1'
+                fontSize="lg"
+                fontFamily="'Poppins', sans-serif"
+              >
+                <HStack spacing={2}>
+                  <AiOutlineAlignLeft />
+                  <Text>Description</Text>
+                </HStack>
+              </Box>
+              <AccordionIcon />
+            </AccordionButton>
+          </h2>
+          <AccordionPanel pb={4} bg={useColorModeValue("gray.100", "whiteAlpha.100")}>
+            <Text fontSize="lg">
+              The meme must be in favor of the Ultra Sound Money idea and ideally funny and/or educational.
+            </Text>
+          </AccordionPanel>
+        </AccordionItem>
+      </BorderedAccordion>
+
+      <Box height={30} />
+
+      <BorderedAccordion defaultIndex={[0]} allowMultiple>
+        <AccordionItem>
+            <h2>
+            <AccordionButton>
+              <Box
+                flex='1'
+                fontSize="lg"
+                fontFamily="'Poppins', sans-serif"
+              >
+                <HStack spacing={2}>
+                  <FaClipboardCheck />
+                  <Text>Examples</Text>
+                </HStack>
+              </Box>
+              <AccordionIcon />
+            </AccordionButton>
+            </h2>
+            <AccordionPanel pb={4} bg={useColorModeValue("gray.100", "whiteAlpha.100")}>
+              {/* <Text fontSize="2xl">
+                <b>Good Examples:</b>
+              </Text> */}
+              <ImageExamples imgs={imgs} />
+            </AccordionPanel>
+          </AccordionItem>
+      </BorderedAccordion>
       {/* <VStack marginTop="30px" fontSize="lg" spacing="5px" align="start">
         <Text>
           🏆 &nbsp; Ξ0.01 ETH
