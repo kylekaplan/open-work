@@ -4,11 +4,6 @@ import {
   Text,
   Heading,
   VStack,
-  Accordion,
-  AccordionItem,
-  AccordionButton,
-  AccordionIcon,
-  AccordionPanel,
   Flex,
   Button,
   Divider,
@@ -16,7 +11,6 @@ import {
 } from '@chakra-ui/react';
 import { FaEthereum, FaClipboardCheck } from 'react-icons/fa';
 import { AiOutlineAlignLeft } from 'react-icons/ai';
-import { BiBadgeCheck } from 'react-icons/bi';
 import './challenge.css';
 import img1 from '../../assets/images/ultra-sound-money/1.jpeg'
 import img2 from '../../assets/images/ultra-sound-money/2.jpeg'
@@ -26,7 +20,13 @@ import ImageExamples from './ImageExamples';
 import TimeLeft from '../../molecules/TimeLeft';
 import Uploader from './Uploader';
 import BorderedBox from '../../atoms/BorderedBox';
-import BorderedAccordion from '../../atoms/BorderedAccordion';
+import {
+  BorderedAccordion,
+  BorderedAccordionItem,
+  BorderedAccordionButton,
+  BorderedAccordionIcon,
+  BorderedAccordionPanel,
+} from '../../atoms/BorderedAccordion';
 
 const imgs = [
   {
@@ -105,9 +105,9 @@ const Challenge = () => {
       </Flex>
       <Box height={30} />
       <BorderedAccordion defaultIndex={[0]} allowMultiple>
-        <AccordionItem>
+        <BorderedAccordionItem>
           <h2>
-            <AccordionButton>
+            <BorderedAccordionButton>
               <Box
                 flex='1'
                 fontSize="lg"
@@ -118,23 +118,23 @@ const Challenge = () => {
                   <Text>Description</Text>
                 </HStack>
               </Box>
-              <AccordionIcon />
-            </AccordionButton>
+              <BorderedAccordionIcon />
+            </BorderedAccordionButton>
           </h2>
-          <AccordionPanel pb={4} bg={useColorModeValue("gray.100", "whiteAlpha.100")}>
+          <BorderedAccordionPanel pb={4} bg={useColorModeValue("gray.100", "whiteAlpha.100")}>
             <Text fontSize="lg">
-              The meme must be in favor of the Ultra Sound Money idea and ideally funny and/or educational.
+              The meme must be in favor of the Ultra Sound Money idea and ideally funny and/or educational. I plan on using the meme in an educational series that teaches crypto through memes. Acceptable file formats include all image files, if using photoshop including the .psd file would be extra appreciated by the open source community.
             </Text>
-          </AccordionPanel>
-        </AccordionItem>
+          </BorderedAccordionPanel>
+        </BorderedAccordionItem>
       </BorderedAccordion>
 
       <Box height={30} />
 
       <BorderedAccordion defaultIndex={[0]} allowMultiple>
-        <AccordionItem>
+        <BorderedAccordionItem>
             <h2>
-            <AccordionButton>
+            <BorderedAccordionButton>
               <Box
                 flex='1'
                 fontSize="lg"
@@ -145,16 +145,16 @@ const Challenge = () => {
                   <Text>Examples</Text>
                 </HStack>
               </Box>
-              <AccordionIcon />
-            </AccordionButton>
+              <BorderedAccordionIcon />
+            </BorderedAccordionButton>
             </h2>
-            <AccordionPanel pb={4} bg={useColorModeValue("gray.100", "whiteAlpha.100")}>
+            <BorderedAccordionPanel pb={4} bg={useColorModeValue("gray.100", "whiteAlpha.100")}>
               {/* <Text fontSize="2xl">
                 <b>Good Examples:</b>
               </Text> */}
               <ImageExamples imgs={imgs} />
-            </AccordionPanel>
-          </AccordionItem>
+            </BorderedAccordionPanel>
+          </BorderedAccordionItem>
       </BorderedAccordion>
       {/* <VStack marginTop="30px" fontSize="lg" spacing="5px" align="start">
         <Text>
