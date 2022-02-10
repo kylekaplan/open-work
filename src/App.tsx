@@ -61,7 +61,7 @@ const theme = extendTheme({ config, colors, components })
 
 export const App = () => (
   <ChakraProvider theme={theme}>
-    <Router>
+    <Router basename="/open-work" >
       <Box p={3}>
         <Flex justify="end">
           <ColorModeSwitcher />
