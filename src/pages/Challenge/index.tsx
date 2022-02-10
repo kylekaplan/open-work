@@ -44,6 +44,7 @@ const imgs = [
 ];
 
 const Challenge = () => {
+  const endDate = new Date('Febuary 20, 2022 12:00:00');
   return (
     <Box m="30px 85px">
       <Flex>
@@ -79,9 +80,9 @@ const Challenge = () => {
           >
             <Box p="20px">
               <Text fontSize={16}>
-                Challenge ends January 14, 2022 at 6:15am EST
+                Challenge ends {endDate.toLocaleString('default', { month: 'long', day: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit', timeZone: 'EST' })} EST.
               </Text>
-              <TimeLeft date={Date.now() + 1000000000} />
+              <TimeLeft date={endDate.getTime()} />
             </Box>
             <Divider />
             <Box
@@ -123,7 +124,7 @@ const Challenge = () => {
           </h2>
           <BorderedAccordionPanel pb={4} bg={useColorModeValue("gray.100", "whiteAlpha.100")}>
             <Text fontSize="lg">
-              The meme must be in favor of the Ultra Sound Money idea and ideally funny and/or educational. I plan on using the meme in an educational series that teaches crypto through memes. Acceptable file formats include all image files, if using photoshop including the .psd file would be extra appreciated by the open source community.
+              The meme must be in favor of the Ultra Sound Money idea and ideally funny and/or educational. I plan on using the meme in an educational series that teaches crypto through memes.
             </Text>
           </BorderedAccordionPanel>
         </BorderedAccordionItem>
