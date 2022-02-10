@@ -4,10 +4,7 @@ import {
   ThemeConfig,
   Box,
   Flex,
-  useColorModeValue,
 } from '@chakra-ui/react'
-import { mode, getColor } from '@chakra-ui/theme-tools'
-import { theme as defaultTheme } from "@chakra-ui/theme"
 import {
   BrowserRouter as Router,
   Route,

@@ -1,6 +1,5 @@
 import Countdown from 'react-countdown';
 import {
-  Box,
   HStack,
   Text,
   VStack,
