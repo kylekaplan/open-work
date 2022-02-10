@@ -1,6 +1,7 @@
 import {
-  Box,
+  VStack,
   Text,
+  useColorModeValue,
 } from '@chakra-ui/react';
 import Dropzone, { defaultClassNames, IDropzoneProps, ILayoutProps } from 'react-dropzone-uploader'
 import 'react-dropzone-uploader/dist/styles.css';
@@ -20,10 +21,11 @@ const Layout = ({ input, previews, submitButton, dropzoneProps, files, extra: { 
 
 const InputContent = () => {
   return (
-    <Box textAlign="center">
-      <Text color="teal">Drop your meme here 🖐️🎤</Text>
-      <Text color="teal">(JPEG, PNG, or GIF)</Text>
-    </Box>
+    <VStack spacing={2} textAlign="center">
+      <Text color={useColorModeValue("teal.500", "teal.200")} fontSize="3xl" colorScheme="teal">Drop your meme here 🖐️🎤</Text>
+      <Text color={useColorModeValue("gray.800", "whiteAlpha.800")} fontSize="lg">(JPG, JPEG, PNG, GIF, SVG, ect.)</Text>
+      <Text color={useColorModeValue("gray.800", "whiteAlpha.800")} fontSize="lg">Be an open source hero and also include the raw files (PSD, PXD, TIFF, ect.)</Text>
+    </VStack>
   );
 }
 
@@ -43,7 +45,13 @@ const Uploader = () => {
       getUploadParams={getUploadParams}
       LayoutComponent={Layout}
       onSubmit={handleSubmit}
-      classNames={{ inputLabelWithFiles: defaultClassNames.inputLabel }}
+      classNames={{
+        inputLabelWithFiles: defaultClassNames.inputLabel
+      }}
+      styles={{
+        dropzone: { padding: 60 },
+        inputLabel: { position: 'relative' },
+      }}
       inputContent={<InputContent />}
     />
   )
