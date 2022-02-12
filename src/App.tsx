@@ -52,8 +52,37 @@ const Border = {
   },
 }
 
+const Text = {
+  variants: {
+    'blackAndWhite': (props: any) => ({
+      color: props.colorMode === 'light' ? 'gray.800' : 'whiteAlpha.800',
+    }),
+    'teal': (props: any) => ({
+      color: props.colorMode === 'light' ? 'teal.500' : 'teal.200',
+    }),
+  },
+  // The default variant value
+  defaultProps: {
+    variant: 'blackAndWhite',
+  },
+}
+
+const Background = {
+  variants: {
+    'shade': (props: any) => ({
+      backgroundColor: props.colorMode === 'light' ? 'gray.100' : 'whiteAlpha.100',
+    }),
+  },
+  // The default variant value
+  defaultProps: {
+    variant: 'shade',
+  },
+}
+
 const components = {
   Border,
+  Text,
+  Background,
 }
 
 const theme = extendTheme({ config, colors, components })

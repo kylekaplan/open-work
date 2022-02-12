@@ -13,8 +13,7 @@ function BorderedAccordion(props: any) {
   const styles = useStyleConfig('Border', { variant })
   console.log('styles', styles)
 
-  // Pass the computed styles into the `__css` prop
-  return <Accordion __css={styles} {...rest} />
+  return <Accordion sx={styles} {...rest} />
 }
 
 function BorderedAccordionItem(props: any) {

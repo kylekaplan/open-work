@@ -2,6 +2,7 @@ import {
   VStack,
   Text,
   useColorModeValue,
+  useStyleConfig,
 } from '@chakra-ui/react';
 import Dropzone, { defaultClassNames, IDropzoneProps, ILayoutProps } from 'react-dropzone-uploader'
 import 'react-dropzone-uploader/dist/styles.css';
@@ -22,9 +23,19 @@ const Layout = ({ input, previews, submitButton, dropzoneProps, files, extra: { 
 const InputContent = () => {
   return (
     <VStack spacing={2} textAlign="center">
-      <Text color={useColorModeValue("teal.500", "teal.200")} fontSize="3xl" colorScheme="teal">Drop your meme here 🖐️🎤</Text>
-      <Text color={useColorModeValue("gray.800", "whiteAlpha.800")} fontSize="lg">(JPG, JPEG, PNG, GIF, SVG, ect.)</Text>
-      <Text color={useColorModeValue("gray.800", "whiteAlpha.800")} fontSize="lg">Be an open source hero and also include the raw files (PSD, PXD, TIFF, ect.)</Text>
+      <Text sx={useStyleConfig('Text', { variant: 'teal' })} fontSize="3xl">Drop your meme here 🖐️🎤</Text>
+      <Text
+        sx={useStyleConfig('Text', { variant: 'blackAndWhite' })}
+        fontSize="lg"
+      >
+        (JPG, JPEG, PNG, GIF, SVG, ect.)
+      </Text>
+      <Text
+        sx={useStyleConfig('Text', { variant: 'blackAndWhite' })}
+        fontSize="lg"
+      >
+        Be an open source hero and also include the raw files (PSD, PXD, TIFF, ect.)
+      </Text>
     </VStack>
   );
 }

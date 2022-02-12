@@ -1,5 +1,4 @@
 import {
-  useColorModeValue,
   Box,
   Text,
   Heading,
@@ -8,6 +7,7 @@ import {
   Button,
   Divider,
   HStack,
+  useStyleConfig,
 } from '@chakra-ui/react';
 import { FaEthereum, FaClipboardCheck } from 'react-icons/fa';
 import { AiOutlineAlignLeft } from 'react-icons/ai';
@@ -67,11 +67,10 @@ const Challenge = () => {
             <Text
               fontSize="md"
               fontFamily="'Poppins', sans-serif"
-              // color={useColorModeValue("gray.900", "#2081e2")}
               // color="#2081e2"
               // color="teal.200"
             >
-              By: <Text as="span" color={useColorModeValue("teal.500", "teal.200")}>kylekaplan.eth</Text>
+              By: <Text as="span" sx={useStyleConfig('Text', { variant: 'teal' })}>kylekaplan.eth</Text>
             </Text>
           </VStack>
           <BorderedBox
@@ -87,7 +86,7 @@ const Challenge = () => {
             <Divider />
             <Box
               p={30}
-              bg={useColorModeValue("gray.100", "whiteAlpha.100")}
+              sx={useStyleConfig('Background')}
               borderBottomRadius={8}
             >
               <Text>
@@ -98,7 +97,7 @@ const Challenge = () => {
                 <Text>0.01</Text>
               </HStack>
               <Button colorScheme="teal" mt={4}>
-                Submit your meme
+                Connect your wallet
               </Button>
             </Box>
           </BorderedBox>
@@ -122,7 +121,10 @@ const Challenge = () => {
               <BorderedAccordionIcon />
             </BorderedAccordionButton>
           </h2>
-          <BorderedAccordionPanel pb={4} bg={useColorModeValue("gray.100", "whiteAlpha.100")}>
+          <BorderedAccordionPanel
+            pb={4}
+            sx={useStyleConfig('Background')}
+          >
             <Text fontSize="lg">
               The meme must be in favor of the Ultra Sound Money idea and ideally funny and/or educational. I plan on using the meme in an educational series that teaches crypto through memes.
             </Text>
@@ -149,7 +151,10 @@ const Challenge = () => {
               <BorderedAccordionIcon />
             </BorderedAccordionButton>
             </h2>
-            <BorderedAccordionPanel pb={4} bg={useColorModeValue("gray.100", "whiteAlpha.100")}>
+            <BorderedAccordionPanel
+              pb={4}
+              sx={useStyleConfig('Background')}
+            >
               {/* <Text fontSize="2xl">
                 <b>Good Examples:</b>
               </Text> */}

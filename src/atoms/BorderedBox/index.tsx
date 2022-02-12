@@ -6,7 +6,7 @@ function BorderedBox(props: any) {
   const styles = useStyleConfig('Border', { variant })
 
   // Pass the computed styles into the `__css` prop
-  return <Box __css={styles} {...rest} />
+  return <Box sx={styles} {...rest} />
 }
 
 export default BorderedBox
