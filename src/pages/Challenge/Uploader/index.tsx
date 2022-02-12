@@ -1,7 +1,7 @@
 import {
   VStack,
   Text,
-  useColorModeValue,
+  useColorMode,
   useStyleConfig,
 } from '@chakra-ui/react';
 import Dropzone, { defaultClassNames, IDropzoneProps, ILayoutProps } from 'react-dropzone-uploader'
@@ -50,6 +50,9 @@ const Uploader = () => {
     console.log(files.map(f => f.meta))
     allFiles.forEach(f => f.remove())
   }
+  
+  const { colorMode } = useColorMode()
+  const bdrClr = colorMode === 'light' ? "#E2E8F0" : "#ffffff29";
 
   return (
     <Dropzone
@@ -60,7 +63,7 @@ const Uploader = () => {
         inputLabelWithFiles: defaultClassNames.inputLabel
       }}
       styles={{
-        dropzone: { padding: 60 },
+        dropzone: { padding: "80px 30px", borderColor: bdrClr },
         inputLabel: { position: 'relative' },
       }}
       inputContent={<InputContent />}
