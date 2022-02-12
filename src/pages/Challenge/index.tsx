@@ -8,6 +8,7 @@ import {
   Divider,
   HStack,
   useStyleConfig,
+  DarkMode,
 } from '@chakra-ui/react';
 import { FaEthereum, FaClipboardCheck } from 'react-icons/fa';
 import { AiOutlineAlignLeft } from 'react-icons/ai';
@@ -48,13 +49,15 @@ const Challenge = () => {
   return (
     <Box m="30px 85px">
       <Flex>
-        <Box width="40vw" bg="black" color="whiteAlpha.800" p={4} alignItems="start" justifyContent="start">
-          <Text><b>Title:</b> Create an original Ultra Sound Money meme.</Text>
-          <Text><b>Posted by:</b> kylekaplan.eth</Text>
-          <Text><b>Start Date:</b> January 7th, 2022</Text>
-          <Text><b>End Date:</b> January 14th, 2022</Text>
-          <Text><b>Prize amount:</b> 0.01 ETH</Text>
-        </Box>
+        <DarkMode>
+          <Box width="40vw" bg="black" p={4}>
+            <Text><b>Title:</b> Create an original Ultra Sound Money meme.</Text>
+            <Text><b>Posted by:</b> kylekaplan.eth</Text>
+            <Text><b>Start Date:</b> January 7th, 2022</Text>
+            <Text><b>End Date:</b> January 14th, 2022</Text>
+            <Text><b>Prize amount:</b> 0.01 ETH</Text>
+          </Box>
+        </DarkMode>
         <Box ml={30}>
           <VStack align="start" spacing={5}>
             <Heading
