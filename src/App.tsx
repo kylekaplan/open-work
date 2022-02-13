@@ -98,7 +98,6 @@ export const App = () => (
         <Routes>
           <Route path="/" element={<Home/>}/>
           <Route path="/challenge" element={<Challenge/>}/>
-          {/* <Route path="/recovery-password" element={<RecoveryPassword/>}/> */}
           <Route path="*" element={<NotFound/>}/>
         </Routes>
       </Box>

@@ -8,7 +8,7 @@ import {
   Divider,
   HStack,
   useStyleConfig,
-  DarkMode,
+  useBreakpointValue,
 } from '@chakra-ui/react';
 import { FaEthereum, FaClipboardCheck } from 'react-icons/fa';
 import { AiOutlineAlignLeft } from 'react-icons/ai';
@@ -28,6 +28,8 @@ import {
   BorderedAccordionIcon,
   BorderedAccordionPanel,
 } from '../../atoms/BorderedAccordion';
+import Footer from '../../organsims/Footer';
+import NFTViewer from './NFTViewer.tsx';
 
 const imgs = [
   {
@@ -44,21 +46,32 @@ const imgs = [
   },
 ];
 
+const data = {
+  title: 'Ultra Create an original Ultra Sound Money meme. Money',
+  postedBy: 'kylekaplan.eth',
+  startDate: 'January 7th, 2022',
+  endDate: 'January 14th, 2022',
+  prizeAmount: '0.01 ETH',
+};
+
 const Challenge = () => {
+  const variant = useBreakpointValue({ base: 'outline', md: 'solid' });
+  console.log('variant', variant);
   const endDate = new Date('Febuary 20, 2022 12:00:00');
   return (
-    <Box m="30px 85px">
+    <Box m="0 auto" padding={{ base: "30px 5px", md: "30px 40px", lg: "30px 60px", xl: "30px 80px" }} maxWidth="1600px">
       <Flex>
-        <DarkMode>
-          <Box width="40vw" bg="black" p={4}>
-            <Text><b>Title:</b> Create an original Ultra Sound Money meme.</Text>
-            <Text><b>Posted by:</b> kylekaplan.eth</Text>
-            <Text><b>Start Date:</b> January 7th, 2022</Text>
-            <Text><b>End Date:</b> January 14th, 2022</Text>
-            <Text><b>Prize amount:</b> 0.01 ETH</Text>
-          </Box>
-        </DarkMode>
-        <Box ml={30}>
+        {/* NFT Viewer on large screens */}
+        <Box display={{ base: 'none', md: 'block' }}>
+          <NFTViewer
+            title={data.title}
+            postedBy={data.postedBy}
+            startDate={data.startDate}
+            endDate={data.endDate}
+            prizeAmount={data.prizeAmount}
+          />
+        </Box>
+        <Box ml={{ base: 0, md: 30 }}>
           <VStack align="start" spacing={5}>
             <Heading
               fontSize="4xl"
@@ -67,11 +80,19 @@ const Challenge = () => {
             >
               Create an original Ultra Sound Money meme.
             </Heading>
+            {/* NFT Viewer on small screens */}
+            <Box width="100%" display={{ base: 'block', md: 'none' }}>
+              <NFTViewer
+                title={data.title}
+                postedBy={data.postedBy}
+                startDate={data.startDate}
+                endDate={data.endDate}
+                prizeAmount={data.prizeAmount}
+              />
+            </Box>
             <Text
               fontSize="md"
               fontFamily="'Poppins', sans-serif"
-              // color="#2081e2"
-              // color="teal.200"
             >
               By: <Text as="span" sx={useStyleConfig('Text', { variant: 'teal' })}>kylekaplan.eth</Text>
             </Text>
@@ -93,7 +114,7 @@ const Challenge = () => {
               borderBottomRadius={8}
             >
               <Text>
-                Challenge Prize:
+                Prize:
               </Text>
               <HStack fontSize="30px">
                 <FaEthereum />
@@ -107,7 +128,7 @@ const Challenge = () => {
         </Box>
       </Flex>
       <Box height={30} />
-      <BorderedAccordion defaultIndex={[0]} allowMultiple>
+      <BorderedAccordion width="100%" defaultIndex={[0]} allowMultiple>
         <BorderedAccordionItem>
           <h2>
             <BorderedAccordionButton>
@@ -137,7 +158,7 @@ const Challenge = () => {
 
       <Box height={30} />
 
-      <BorderedAccordion defaultIndex={[0]} allowMultiple>
+      <BorderedAccordion width="100%" defaultIndex={[0]} allowMultiple>
         <BorderedAccordionItem>
             <h2>
             <BorderedAccordionButton>
@@ -157,32 +178,15 @@ const Challenge = () => {
             <BorderedAccordionPanel
               pb={4}
               sx={useStyleConfig('Background')}
+              overflow="scroll"
             >
-              {/* <Text fontSize="2xl">
-                <b>Good Examples:</b>
-              </Text> */}
               <ImageExamples imgs={imgs} />
             </BorderedAccordionPanel>
           </BorderedAccordionItem>
       </BorderedAccordion>
-      {/* <VStack marginTop="30px" fontSize="lg" spacing="5px" align="start">
-        <Text>
-          🏆 &nbsp; Ξ0.01 ETH
-        </Text>
-        <Text>
-          📅 &nbsp;Jan. 7th - 14th
-        </Text>
-        <Text>
-          ⏳ &nbsp;
-          <TimeLeft date={Date.now() + 100000000} />
-        </Text>
-        <Text fontSize="2xl">
-          <b>Good Examples:</b>
-        </Text>
-        <ImageExamples imgs={imgs} />
-      </VStack> */}
-      <Box height={75} />
+      <Box height={{ base: 10, md: 30, lg: 75 }} />
       <Uploader />
+      <Footer />
     </Box>
   );
 }

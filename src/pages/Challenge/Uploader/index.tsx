@@ -3,6 +3,7 @@ import {
   Text,
   useColorMode,
   useStyleConfig,
+  Flex,
 } from '@chakra-ui/react';
 import Dropzone, { defaultClassNames, IDropzoneProps, ILayoutProps } from 'react-dropzone-uploader'
 import 'react-dropzone-uploader/dist/styles.css';
@@ -63,8 +64,8 @@ const Uploader = () => {
         inputLabelWithFiles: defaultClassNames.inputLabel
       }}
       styles={{
-        dropzone: { padding: "80px 30px", borderColor: bdrClr },
-        inputLabel: { position: 'relative' },
+        dropzone: { borderColor: bdrClr, width: '100%' },
+        inputLabel: { position: 'relative', padding: "80px 30px" , width: '100%' },
       }}
       inputContent={<InputContent />}
     />
