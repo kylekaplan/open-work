@@ -14,8 +14,10 @@
     "@types/node": "^12.20.37",
     "@types/react": "^16.14.21",
     "@types/react-dom": "^16.9.14",
+    "ethers": "^5.5.4",
     "framer-motion": "^4.1.17",
     "gh-pages": "^3.2.3",
+    "ipfs-http-client": "^56.0.1",
     "parallax-js": "^3.1.0",
     "react": "^17.0.2",
     "react-countdown": "^2.3.2",
@@ -26,6 +28,7 @@
     "react-router-dom": "^6.2.1",
     "react-scripts": "4.0.3",
     "rsuite": "^5.4.4",
+    "siwe": "^1.1.0",
     "source-map-explorer": "^2.5.2",
     "typescript": "^4.5.3",
     "web-vitals": "^0.2.4"

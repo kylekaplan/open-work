@@ -30,6 +30,7 @@ import {
 } from '../../atoms/BorderedAccordion';
 import Footer from '../../organsims/Footer';
 import NFTViewer from './NFTViewer.tsx';
+import ConnectWalletButton from '../../atoms/ConnectWalletButton';
 
 const imgs = [
   {
@@ -120,9 +121,7 @@ const Challenge = () => {
                 <FaEthereum />
                 <Text>0.01</Text>
               </HStack>
-              <Button colorScheme="teal" mt={4}>
-                Connect your wallet
-              </Button>
+              <ConnectWalletButton />
             </Box>
           </BorderedBox>
         </Box>

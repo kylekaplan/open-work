@@ -14,7 +14,9 @@ const Layout = ({ input, previews, submitButton, dropzoneProps, files, extra: { 
     <div>
       {previews}
 
-      <div {...dropzoneProps}>{files.length < maxFiles && input}</div>
+      <div {...dropzoneProps}>
+        {files.length < maxFiles && input}
+      </div>
 
       {files.length > 0 && submitButton}
     </div>
