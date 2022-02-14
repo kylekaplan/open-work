@@ -4,48 +4,26 @@ import {
   Heading,
   VStack,
   Flex,
-  Button,
   Divider,
   HStack,
   useStyleConfig,
   useBreakpointValue,
 } from '@chakra-ui/react';
-import { FaEthereum, FaClipboardCheck } from 'react-icons/fa';
-import { AiOutlineAlignLeft } from 'react-icons/ai';
+import { FaEthereum } from 'react-icons/fa';
 import './challenge.css';
-import img1 from '../../assets/images/ultra-sound-money/1.jpeg'
-import img2 from '../../assets/images/ultra-sound-money/2.jpeg'
-import img1Thumbnail from '../../assets/images/ultra-sound-money/1thumbnail.jpeg';
-import img2Thumbnail from '../../assets/images/ultra-sound-money/2thumbnail.jpeg';
-import ImageExamples from './ImageExamples';
 import TimeLeft from '../../molecules/TimeLeft';
 import Uploader from './Uploader';
 import BorderedBox from '../../atoms/BorderedBox';
-import {
-  BorderedAccordion,
-  BorderedAccordionItem,
-  BorderedAccordionButton,
-  BorderedAccordionIcon,
-  BorderedAccordionPanel,
-} from '../../atoms/BorderedAccordion';
 import Footer from '../../organsims/Footer';
 import NFTViewer from './NFTViewer.tsx';
 import ConnectWalletButton from '../../atoms/ConnectWalletButton';
+import Description from './Accordions/Description';
+import ExampleImages from './Accordions/ExampleImages';
 
-const imgs = [
-  {
-    thumbnail: img1Thumbnail,
-    image: img1,
-    imgWidth: 508,
-    imgHeight: 491,
-  },
-  {
-    thumbnail: img2Thumbnail,
-    image: img2,
-    imgWidth: 2702,
-    imgHeight: 1514,
-  },
-];
+
+const MyDivider = () => (
+  <Box height={30} />
+);
 
 const data = {
   title: 'Ultra Create an original Ultra Sound Money meme. Money',
@@ -126,63 +104,10 @@ const Challenge = () => {
           </BorderedBox>
         </Box>
       </Flex>
-      <Box height={30} />
-      <BorderedAccordion width="100%" defaultIndex={[0]} allowMultiple>
-        <BorderedAccordionItem>
-          <h2>
-            <BorderedAccordionButton>
-              <Box
-                flex='1'
-                fontSize="lg"
-                fontFamily="'Poppins', sans-serif"
-              >
-                <HStack spacing={2}>
-                  <AiOutlineAlignLeft />
-                  <Text>Description</Text>
-                </HStack>
-              </Box>
-              <BorderedAccordionIcon />
-            </BorderedAccordionButton>
-          </h2>
-          <BorderedAccordionPanel
-            pb={4}
-            sx={useStyleConfig('Background')}
-          >
-            <Text fontSize="lg">
-              The meme must be in favor of the Ultra Sound Money idea and ideally funny and/or educational. I plan on using the meme in an educational series that teaches crypto through memes.
-            </Text>
-          </BorderedAccordionPanel>
-        </BorderedAccordionItem>
-      </BorderedAccordion>
-
-      <Box height={30} />
-
-      <BorderedAccordion width="100%" defaultIndex={[0]} allowMultiple>
-        <BorderedAccordionItem>
-            <h2>
-            <BorderedAccordionButton>
-              <Box
-                flex='1'
-                fontSize="lg"
-                fontFamily="'Poppins', sans-serif"
-              >
-                <HStack spacing={2}>
-                  <FaClipboardCheck />
-                  <Text>Examples</Text>
-                </HStack>
-              </Box>
-              <BorderedAccordionIcon />
-            </BorderedAccordionButton>
-            </h2>
-            <BorderedAccordionPanel
-              pb={4}
-              sx={useStyleConfig('Background')}
-              overflow="scroll"
-            >
-              <ImageExamples imgs={imgs} />
-            </BorderedAccordionPanel>
-          </BorderedAccordionItem>
-      </BorderedAccordion>
+      <MyDivider />
+      <Description />
+      <MyDivider />
+      <ExampleImages />
       <Box height={{ base: 10, md: 30, lg: 75 }} />
       <Uploader />
       <Footer />
