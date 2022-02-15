@@ -9,7 +9,7 @@ import {
 
 interface AccordionDataDisplayProps {
   title: string;
-  icon: JSX.Element;
+  icon?: JSX.Element;
   children: React.ReactNode;
 }
 const AccordionDataDisplay = ({

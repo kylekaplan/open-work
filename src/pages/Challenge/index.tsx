@@ -5,6 +5,7 @@ import Footer from '../../organsims/Footer';
 import Description from './Accordions/Description';
 import ExampleImages from './Accordions/ExampleImages';
 import TopFold from './TopFolder';
+import DisplaySubmissions from '../../organsims/DisplaySubmissions';
 
 
 const MyDivider = () => (
@@ -25,6 +26,8 @@ const Challenge = () => {
       <ExampleImages />
       <Box height={{ base: 10, md: 30, lg: 75 }} />
       <Uploader />
+      <MyDivider />
+      <DisplaySubmissions />
       <Footer />
     </Box>
   );
