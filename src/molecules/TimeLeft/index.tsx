@@ -35,7 +35,7 @@ const TimeLeft = ({ date }: TimeLeftProps) => {
       date={date}
       renderer={({ days, hours, minutes, seconds }) => (
         <>
-          <HStack spacing={12} mt={6}>
+          <HStack spacing={{ base: 6, md: 8, lg: 10, xl: 12 }} mt={6}>
             <Block value={twoDigits(days)} label="Days" />
             <Block value={twoDigits(hours)} label="Hours" />
             <Block value={twoDigits(minutes)} label="Minutes" />

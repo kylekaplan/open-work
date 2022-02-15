@@ -35,11 +35,11 @@ const ImageExamples = ({ imgs }: ImageExamplesProps) => {
       <HStack>
         {imgs.map((item) => (
           <Item
+            key={item.image}
             original={item.image}
             thumbnail={item.thumbnail}
             width={item.imgWidth}
-            height={item.imgHeight}
-            
+            height={item.imgHeight} 
           >
             {({ ref, open }) => (
               <Image
