@@ -3,8 +3,8 @@ import { Box, DarkMode, Text } from "@chakra-ui/react";
 interface NFTViewerProps {
   title: string;
   postedBy: string;
-  startDate: string;
-  endDate: string;
+  startDate: Date;
+  endDate: Date;
   prizeAmount: string;
 }
 const NFTViewer = ({
@@ -19,8 +19,8 @@ const NFTViewer = ({
       <Box height="100%" bg="black" p={4}>
         <Text><b>Title:</b> {title}</Text>
         <Text><b>Posted by:</b> {postedBy}</Text>
-        <Text><b>Start Date:</b> {startDate}</Text>
-        <Text><b>End Date:</b> {endDate}</Text>
+        <Text><b>Start Date:</b> {startDate.toUTCString()}</Text>
+        <Text><b>End Date:</b> {endDate.toUTCString()}</Text>
         <Text><b>Prize amount:</b> {prizeAmount}</Text>
       </Box>
     </DarkMode>

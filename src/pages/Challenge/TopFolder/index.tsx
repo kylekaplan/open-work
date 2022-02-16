@@ -14,26 +14,39 @@ import ConnectWalletButton from '../../../atoms/ConnectWalletButton';
 import TimeLeft from '../../../molecules/TimeLeft';
 import NFTViewer from '../NFTViewer.tsx';
 
-const data = {
-  title: 'Ultra Create an original Ultra Sound Money meme. Money',
-  postedBy: 'kylekaplan.eth',
-  startDate: 'January 7th, 2022',
-  endDate: 'January 14th, 2022',
-  prizeAmount: '0.01 ETH',
-};
+// const data = {
+//   title: 'Ultra Create an original Ultra Sound Money meme. Money',
+//   postedBy: 'kylekaplan.eth',
+//   startDate: 'January 7th, 2022',
+//   endDate: 'January 14th, 2022',
+//   prizeAmount: '0.01 ETH',
+// };
 
-const TopFold = () => {
-  const endDate = new Date('Febuary 20, 2022 12:00:00');
+interface TopFoldProps {
+  title: string;
+  postedBy: string;
+  startDate: Date;
+  endDate: Date;
+  prizeAmount: { contract: string; amount: string };
+}
+const TopFold = ({
+  title,
+  postedBy,
+  startDate,
+  endDate,
+  prizeAmount,
+}: TopFoldProps) => {
+  // const endDate = new Date('Febuary 20, 2022 12:00:00');
   return (
     <Flex>
       {/* NFT Viewer on large screens */}
       <Box display={{ base: 'none', md: 'block' }}>
         <NFTViewer
-          title={data.title}
-          postedBy={data.postedBy}
-          startDate={data.startDate}
-          endDate={data.endDate}
-          prizeAmount={data.prizeAmount}
+          title={title}
+          postedBy={postedBy}
+          startDate={startDate}
+          endDate={endDate}
+          prizeAmount={prizeAmount.amount}
         />
       </Box>
       <Box ml={{ base: 0, md: 30 }}>
@@ -48,11 +61,11 @@ const TopFold = () => {
           {/* NFT Viewer on small screens */}
           <Box width="100%" display={{ base: 'block', md: 'none' }}>
             <NFTViewer
-              title={data.title}
-              postedBy={data.postedBy}
-              startDate={data.startDate}
-              endDate={data.endDate}
-              prizeAmount={data.prizeAmount}
+              title={title}
+              postedBy={postedBy}
+              startDate={startDate}
+              endDate={endDate}
+              prizeAmount={prizeAmount.amount}
             />
           </Box>
           <Text

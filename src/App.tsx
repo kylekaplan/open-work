@@ -10,6 +10,8 @@ import {
   Route,
   Routes,
 } from 'react-router-dom'
+import { initializeApp } from 'firebase/app';
+import { getFirestore } from "firebase/firestore"
 import 'photoswipe/dist/photoswipe.css'
 import 'photoswipe/dist/default-skin/default-skin.css'
 import './app.css';
@@ -87,6 +89,18 @@ const components = {
 
 const theme = extendTheme({ config, colors, components })
 
+// Your web app's Firebase configuration
+const firebaseConfig = {
+  apiKey: "AIzaSyCoIBZjRH3BMArJFA4i7cft-qjuNvV79VI",
+  authDomain: "meme-to-earn.firebaseapp.com",
+  projectId: "meme-to-earn",
+  storageBucket: "meme-to-earn.appspot.com",
+  messagingSenderId: "556994659234",
+  appId: "1:556994659234:web:e7f12a6242353f9fe268fb"
+};
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const db = getFirestore();
 
 export const App = () => (
   <ChakraProvider theme={theme}>
@@ -97,7 +111,7 @@ export const App = () => (
         </Flex>
         <Routes>
           <Route path="/" element={<Home/>}/>
-          <Route path="/challenge" element={<Challenge/>}/>
+          <Route path="/challenge/:id" element={<Challenge db={db} />}/>
           <Route path="*" element={<NotFound/>}/>
         </Routes>
       </Box>
