@@ -4,6 +4,7 @@ import {
 } from "@chakra-ui/react";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { Carousel } from 'react-responsive-carousel';
+import ReactTimeAgo from 'react-time-ago'
 import './styles.css';
 
 const property = {
@@ -16,7 +17,7 @@ const property = {
 interface CardProps {
   files: { src: string }[];
   imageAlt: string;
-  date: string;
+  date: Date;
   postedBy: string;
 }
 const Card = ({
@@ -47,7 +48,8 @@ const Card = ({
             letterSpacing='wide'
             fontSize='xs'
           >
-            {date}
+            {/* {date.toUTCString()} */}
+            <ReactTimeAgo date={date} locale="en-US"/>
           </Box>
         </Box>
 
