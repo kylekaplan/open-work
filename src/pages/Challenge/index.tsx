@@ -9,24 +9,22 @@ import ExampleImages from './Accordions/ExampleImages';
 import TopFold from './TopFolder';
 import DisplaySubmissions from '../../organsims/DisplaySubmissions';
 import { useEffect, useState } from 'react';
+import { useDb } from '../../hooks/useFirebase';
 
 
 const MyDivider = () => (
   <Box height={30} />
 );
 
-interface ChallengeProps {
-  db: any;
-};
-const Challenge = ({
-  db,
-}: ChallengeProps) => {
+interface ChallengeProps {};
+const Challenge = ({}: ChallengeProps) => {
+  const db = useDb();
   let { id } = useParams();
   const [fireData, setFireData] = useState<any>(null);
   const [loading, setLoading] = useState<boolean>(true);
 
   const getData = async () => {
-    if (typeof id === 'string') {
+    if (typeof id === 'string' && db) {
       const docRef = doc(db, "bounties", id);
       const docSnap = await getDoc(docRef);
 
@@ -46,7 +44,7 @@ const Challenge = ({
 
   useEffect(() => {
     getData();
-  }, [id]);
+  }, [id, db]);
 
   if (loading) {
     return null;
