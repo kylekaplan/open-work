@@ -2,6 +2,9 @@ import {
   Box,
   Image,
 } from "@chakra-ui/react";
+import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
+import { Carousel } from 'react-responsive-carousel';
+import './styles.css';
 
 const property = {
   imageUrl: 'https://picsum.photos/200',
@@ -11,20 +14,31 @@ const property = {
 }
 
 interface CardProps {
-  imageUrl: string;
+  files: { src: string }[];
   imageAlt: string;
   date: string;
-  by: string;
+  postedBy: string;
 }
 const Card = ({
-  imageUrl,
+  files,
   imageAlt,
   date,
-  by,
+  postedBy,
 }: CardProps) => {
   return (
     <Box maxW='2xl' borderWidth='1px' borderRadius='lg' overflow="hidden">
-      <Image src={imageUrl} alt={imageAlt} />
+      {!(files.length > 1) // not greater than 1
+        ? <Image src={files[0].src} alt={imageAlt} />
+        : (
+          <Carousel>
+            {files.map((file, index) => (
+                <div key={file.src} >
+                  <Image src={file.src} />
+                </div>
+            ))}
+          </Carousel>
+        )
+      }
       <Box p='6'>
         <Box display='flex' alignItems='baseline'>
           <Box
@@ -44,7 +58,7 @@ const Card = ({
           lineHeight='tight'
           isTruncated
         >
-          By: {by}
+          By: {postedBy}
         </Box>
         {/* <Box display='flex' mt='2' alignItems='center'>
           <Box color='yellow.400' mr='2'>5 stars</Box>

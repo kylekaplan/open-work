@@ -9,30 +9,58 @@ import Card from "./Card"
 const submissions = [
   {
     id: 1,
-    imageUrl: 'https://cdn.vox-cdn.com/thumbor/2q97YCXcLOlkoR2jKKEMQ-wkG9k=/0x0:900x500/1200x800/filters:focal(378x178:522x322)/cdn.vox-cdn.com/uploads/chorus_image/image/49493993/this-is-fine.0.jpg',
     imageAlt: 'hi',
     date: '2 days ago',
-    by: 'vitalik.eth',
+    postedBy: 'vitalik.eth',
+    files: [
+      // {
+      //   src: 'https://cdn.vox-cdn.com/thumbor/2q97YCXcLOlkoR2jKKEMQ-wkG9k=/0x0:900x500/1200x800/filters:focal(378x178:522x322)/cdn.vox-cdn.com/uploads/chorus_image/image/49493993/this-is-fine.0.jpg'
+      // },
+      {
+        src: 'https://cdn.vox-cdn.com/thumbor/2q97YCXcLOlkoR2jKKEMQ-wkG9k=/0x0:900x500/1200x800/filters:focal(378x178:522x322)/cdn.vox-cdn.com/uploads/chorus_image/image/49493993/this-is-fine.0.jpg'
+      }
+    ],
   },
   {
-    imageUrl: 'https://cdn.vox-cdn.com/thumbor/2q97YCXcLOlkoR2jKKEMQ-wkG9k=/0x0:900x500/1200x800/filters:focal(378x178:522x322)/cdn.vox-cdn.com/uploads/chorus_image/image/49493993/this-is-fine.0.jpg',
     imageAlt: 'hi',
     date: '2 days ago',
-    by: 'vitalik.eth',
+    postedBy: 'vitalik.eth',
+    files: [
+      {
+        src: 'https://cdn.vox-cdn.com/thumbor/2q97YCXcLOlkoR2jKKEMQ-wkG9k=/0x0:900x500/1200x800/filters:focal(378x178:522x322)/cdn.vox-cdn.com/uploads/chorus_image/image/49493993/this-is-fine.0.jpg'
+      },
+      {
+        src: 'https://cdn.vox-cdn.com/thumbor/2q97YCXcLOlkoR2jKKEMQ-wkG9k=/0x0:900x500/1200x800/filters:focal(378x178:522x322)/cdn.vox-cdn.com/uploads/chorus_image/image/49493993/this-is-fine.0.jpg'
+      }
+    ],
   },
   {
     id: 3,
-    imageUrl: 'https://cdn.vox-cdn.com/thumbor/2q97YCXcLOlkoR2jKKEMQ-wkG9k=/0x0:900x500/1200x800/filters:focal(378x178:522x322)/cdn.vox-cdn.com/uploads/chorus_image/image/49493993/this-is-fine.0.jpg',
     imageAlt: 'hi',
     date: '2 days ago',
-    by: 'vitalik.eth',
+    postedBy: 'vitalik.eth',
+    files: [
+      {
+        src: 'https://cdn.vox-cdn.com/thumbor/2q97YCXcLOlkoR2jKKEMQ-wkG9k=/0x0:900x500/1200x800/filters:focal(378x178:522x322)/cdn.vox-cdn.com/uploads/chorus_image/image/49493993/this-is-fine.0.jpg'
+      },
+      {
+        src: 'https://cdn.vox-cdn.com/thumbor/2q97YCXcLOlkoR2jKKEMQ-wkG9k=/0x0:900x500/1200x800/filters:focal(378x178:522x322)/cdn.vox-cdn.com/uploads/chorus_image/image/49493993/this-is-fine.0.jpg'
+      }
+    ],
   },
   {
     id: 4,
-    imageUrl: 'https://cdn.vox-cdn.com/thumbor/2q97YCXcLOlkoR2jKKEMQ-wkG9k=/0x0:900x500/1200x800/filters:focal(378x178:522x322)/cdn.vox-cdn.com/uploads/chorus_image/image/49493993/this-is-fine.0.jpg',
     imageAlt: 'hi',
     date: '2 days ago',
-    by: 'vitalik.eth',
+    postedBy: 'vitalik.eth',
+    files: [
+      {
+        src: 'https://cdn.vox-cdn.com/thumbor/2q97YCXcLOlkoR2jKKEMQ-wkG9k=/0x0:900x500/1200x800/filters:focal(378x178:522x322)/cdn.vox-cdn.com/uploads/chorus_image/image/49493993/this-is-fine.0.jpg'
+      },
+      {
+        src: 'https://cdn.vox-cdn.com/thumbor/2q97YCXcLOlkoR2jKKEMQ-wkG9k=/0x0:900x500/1200x800/filters:focal(378x178:522x322)/cdn.vox-cdn.com/uploads/chorus_image/image/49493993/this-is-fine.0.jpg'
+      }
+    ],
   },
 ];
 
@@ -53,10 +81,10 @@ const DisplaySubmissions = () => {
             >
               <Card
                 key={submission.id}
-                imageUrl={submission.imageUrl}
+                files={submission.files}
                 imageAlt={submission.imageAlt}
                 date={submission.date}
-                by={submission.by}
+                postedBy={submission.postedBy}
               />
             </WrapItem>
           ))}
