@@ -50,7 +50,6 @@ const Challenge = ({}: ChallengeProps) => {
     return null;
   };
 
-  console.log('fireData.endDate:', fireData.endDate);
   const endDate = new Date(fireData.endDate.seconds * 1000);
   const startDate = new Date(fireData.startDate.seconds * 1000);
   const {
@@ -60,7 +59,6 @@ const Challenge = ({}: ChallengeProps) => {
     description,
     examplesImages,
   } = fireData;
-  console.log('description:', description);
   return (
     <Box
       m="0 auto"
