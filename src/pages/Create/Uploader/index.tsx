@@ -6,7 +6,7 @@ import {
   useStyleConfig,
   Flex,
 } from '@chakra-ui/react';
-import Dropzone, { defaultClassNames, IDropzoneProps, IFileWithMeta, ILayoutProps } from 'react-dropzone-uploader'
+import Dropzone, { defaultClassNames, getFilesFromEvent, IDropzoneProps, IFileWithMeta, ILayoutProps, StatusValue } from 'react-dropzone-uploader'
 import { create } from "ipfs-http-client";
 import 'react-dropzone-uploader/dist/styles.css';
 
@@ -30,25 +30,17 @@ const Layout = ({ input, previews, submitButton, dropzoneProps, files, extra: { 
 const InputContent = () => {
   return (
     <VStack spacing={2} textAlign="center">
-      <Text sx={useStyleConfig('Text', { variant: 'teal' })} fontSize="3xl">Drop your meme here 🖐️🎤</Text>
-      <Text
-        sx={useStyleConfig('Text', { variant: 'blackAndWhite' })}
-        fontSize="lg"
-      >
-        (JPG, JPEG, PNG, GIF, SVG, ect.)
-      </Text>
-      <Text
-        sx={useStyleConfig('Text', { variant: 'blackAndWhite' })}
-        fontSize="lg"
-      >
-        Be an open source hero and also include the raw files (PSD, PXD, TIFF, ect.)
-      </Text>
+      <Text sx={useStyleConfig('Text', { variant: 'blackAndWhite' })} fontSize="xl">Drop your examples here</Text>
     </VStack>
   );
 }
 
-
-const Uploader = () => {
+interface UploaderProps {
+  handleChangeStatus: (file: IFileWithMeta, status: StatusValue, allFiles: IFileWithMeta[]) => void | { meta: { [name: string]: any; }; }
+};
+const Uploader = ({
+  handleChangeStatus,
+}: UploaderProps) => {
   const [file, setFile] = useState<Buffer | null>(null);
   const [urlArr, setUrlArr] = useState<any[]>([]);
 
@@ -72,8 +64,6 @@ const Uploader = () => {
   const getUploadParams: IDropzoneProps['getUploadParams'] = () => ({ url: 'https://httpbin.org/post' })
 
   const handleSubmit: IDropzoneProps['onSubmit'] = async (files, allFiles) => {
-    console.log('files:', files);
-    console.log('allFiles:', allFiles);
     for (let i = 0; i < allFiles.length; i++) {
       const f = allFiles[i];
       let arrayBuffer = await readFileAsync(f);
@@ -94,6 +84,7 @@ const Uploader = () => {
 
   return (
     <Dropzone
+      onChangeStatus={handleChangeStatus}
       getUploadParams={getUploadParams}
       LayoutComponent={Layout}
       onSubmit={handleSubmit}
@@ -102,9 +93,12 @@ const Uploader = () => {
       }}
       styles={{
         dropzone: { borderColor: bdrClr, width: '100%' },
-        inputLabel: { position: 'relative', padding: "80px 30px" , width: '100%' },
+        inputLabel: { position: 'relative', padding: "50px 0px" , width: '100%' },
       }}
       inputContent={<InputContent />}
+      maxSizeBytes={1000000}
+      maxFiles={15}
+      SubmitButtonComponent={() => null}
     />
   )
 }

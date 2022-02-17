@@ -32,7 +32,7 @@ const ImageExamples = ({ imgs }: ImageExamplesProps) => {
     <Gallery
       options={{ bgOpacity: 0.8, getThumbBoundsFn: getThumbBoundsFn }}
     >
-      <HStack>
+      <HStack mt={2} mb={1} overflow="scroll">
         {imgs.map((item) => (
           <Item
             key={item.image}

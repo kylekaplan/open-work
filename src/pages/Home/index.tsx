@@ -67,7 +67,7 @@ const Home = () => {
           The best meme wins. All memes are open source.
         </Text>
         <Stack direction='row' spacing={4} style={{ marginTop: '30px' }}>
-          <Link to="/challenge">
+          <Link to="/challenge/OVyNZQZY8WqDKF7bdP6Z">
             <Button
               rightIcon={<Icon as={AiOutlineArrowRight} />}
               // colorScheme="#48BB78"
