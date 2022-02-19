@@ -16,15 +16,21 @@ import {
   HStack,
   Button,
 } from '@chakra-ui/react'
-import { useState } from 'react';
+import { useWeb3React } from '@web3-react/core';
+import { ethers } from 'ethers';
+import { useContext, useState } from 'react';
 import DatePicker from "react-datepicker";
-import { getFilesFromEvent } from 'react-dropzone-uploader';
 import { FaEthereum } from 'react-icons/fa';
+import client from '../../services/ethers/client';
+import StoreContext from '../../store/Store/StoreContext';
 import  styles from './styles.module.css';
 import Uploader from './Uploader';
 
 const Create = () => {
+  const stuff = useWeb3React();
+  console.log('library stuff:', stuff);
   const { colorMode } = useColorMode();
+  const [appState] = useContext(StoreContext);
   const [startDate, setStartDate] = useState<Date | null>(new Date());
   const [endDate, setEndDate] = useState<Date | null>(null);
   const [title, setTitle] = useState<string>('');
@@ -47,8 +53,157 @@ const Create = () => {
     }
   }
 
+  // Methods
+	function sleep(ms: number) {
+		return new Promise(resolve => setTimeout(resolve, ms));
+	}
+
+  const volume = 2;
+  const [token, setToken] = useState(appState.tokens[0]);
+  const [transactionHash, setTransactionHash] = useState(null);
+
+  async function fundBounty(bountyAddress: any) {
+    console.log('in fundBounty');
+    console.log('bountyAddress:', bountyAddress);
+		// setIsLoading(true);
+		const volumeInWei = volume * 10 ** token.decimals;
+
+		if (volumeInWei == 0) {
+			// setError({ title: 'Zero Volume Sent', message: 'Must send a greater than 0 volume of tokens.' });
+			// setIsLoading(false);
+			return;
+		}
+
+		const bigNumberVolumeInWei = ethers.BigNumber.from(volumeInWei.toString());
+
+		let approveSucceeded = false;
+
+		try {
+			const callerBalance = await appState.client.balanceOf('library', 'account', token.address);
+
+      console.log('callerBalance:', callerBalance);
+
+			if (callerBalance < bigNumberVolumeInWei) {
+        console.log('Funds Too Low');
+				const title = 'Funds Too Low';
+				const message = 'You do not have sufficient funds for this deposit';
+				// setError({ message, title });
+				// setIsLoading(false);
+				// setShowErrorModal(true);
+				return;
+			}
+		} catch (error) {
+      console.log('hey error:');
+			console.log(error);
+			const title = 'Error';
+			const message = 'A contract call exception occurred';
+			// setError({ message, title });
+			// setIsLoading(false);
+			// setShowErrorModal(true);
+			return;
+		}
+
+		try {
+			if (token.address != ethers.constants.AddressZero) {
+				await appState.client.approve(
+					'library',
+					bountyAddress,
+					token.address,
+					bigNumberVolumeInWei
+				);
+			}
+			approveSucceeded = true;
+		} catch (error) {
+      console.log('yo error:');
+			const { message, title } = appState.client.handleError(error, { bountyAddress });
+      console.log('message:', message);
+      console.log('title:', title);
+			// setError({ message, title });
+			// setIsLoading(false);
+			// setShowErrorModal(true);
+		}
+
+    console.log('approveSucceeded:', approveSucceeded);
+
+		if (approveSucceeded) {
+			try {
+				const fundTxnReceipt = await appState.client.fundBounty(
+					'library',
+					bountyAddress,
+					token.address,
+					bigNumberVolumeInWei
+				);
+        console.log('fundTxnReceipt:', fundTxnReceipt);
+				setTransactionHash(fundTxnReceipt.transactionHash);
+        console.log(`Successfully funded issue ${bountyAddress} with ${volume} ${token.symbol}!`);
+				// setSuccessMessage(
+				// 	`Successfully funded issue ${bountyAddress} with ${volume} ${token.symbol}!`
+				// );
+				// setShowSuccessModal(true);
+				// refreshBounty();
+				// setIsLoading(false);
+			} catch (error) {
+        console.log('hi error:', error);
+				const { message, title } = appState.client.handleError(error, { bountyAddress });
+				// setError({ message, title });
+				// setIsLoading(false);
+				// setShowErrorModal(true);
+			}
+		}
+	}
+
+  // console.log('library', library);
+  async function mintBounty() {
+    console.log('minting bounty');
+		try {
+			// setMintBountyState(TRANSACTION_PENDING());
+
+      // console.log('library', library);
+			const { bountyAddress, txnResponse } = await appState.client.mintBounty(
+				'library',
+				'randomid', // mintBountyState.issueId,
+				'randomOrgName', // mintBountyState.orgName
+			);
+
+      console.log('bountyAddress:', bountyAddress);
+
+      // const from = txnResponse.from;
+      // const nonce = txnResponse.nonce;
+
+      // const realAddress = ethers.utils.getContractAddress({ from, nonce });
+
+      // console.log('realAddress:', realAddress);
+
+      await fundBounty('0xae5f742b45809dacc419b88c6b13859c85567737');
+      // await fundBounty(realAddress);
+
+			// let bountyId = null;
+			// while (bountyId == 'undefined') {
+			// 	const bountyResp = await appState.openQSubgraphClient.getBounty(bountyAddress);
+			// 	bountyId = bountyResp?.bountyId;
+			// 	console.log('bountyId', bountyId);
+			// 	await sleep(500);
+			// }
+
+			// await sleep(1000);
+
+      console.log('done')
+
+			// router.push(
+			// 	`${process.env.NEXT_PUBLIC_BASE_URL}/bounty/${bountyAddress}`
+			// );
+		} catch (error) {
+			console.log('error in mintboutny', error);
+			const { message, title } = appState.client.handleError(error);
+      console.log('message', message);
+      console.log('title', title);
+			// setMintBountyState(TRANSACTION_FAILURE({ message, title }));
+		}
+	}
+
   const handleSubmit = async (e: any) => {
     e.preventDefault();
+    await mintBounty();
     setLoading(true);
     setTitleInvalid(false);
     setStartDateInvalid(false);
@@ -86,8 +241,28 @@ const Create = () => {
     };
     console.log('files', files);
     console.log('bounty', bounty);
+    // await mintBounty();
+    // let bountyId = null;
+    // while (bountyId == 'undefined') {
+    //   const bountyResp = await appState.openQSubgraphClient.getBounty(bountyAddress);
+    //   bountyId = bountyResp?.bountyId;
+    //   console.log('bountyId', bountyId);
+    //   await sleep(500);
+    // }
+
+    // await sleep(1000);
+    console.log('finished submtting');
     setLoading(false);
   };
+
+  // const from = "0x04E7831739bA350b17E36541148368f8541552d6";
+  // const from = '0xe5b2c677a667972a8bc48d2de6835dd0e1f4f1ff';
+  // const from = '0x5F1c306C70FEE9bD34ED91d862Dc1BA6E268CCBD';
+  // const nonce = 18;
+
+  // const realAddress = ethers.utils.getContractAddress({ from, nonce });
+
+  // console.log('realAddress:', realAddress);
 
   return (
     <Box
