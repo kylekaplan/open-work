@@ -4,60 +4,16 @@
   "sourceName": "contracts/OpenQ/OpenQStorable.sol",
   "abi": [
     {
-      "inputs": [
-        {
-          "internalType": "address",
-          "name": "_bountyAddress",
-          "type": "address"
-        }
-      ],
-      "name": "bountyAddressToBountyId",
+      "inputs": [],
+      "name": "bountyFactory",
       "outputs": [
         {
-          "internalType": "string",
-          "name": "bountyId",
-          "type": "string"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "inputs": [
-        {
-          "internalType": "string",
-          "name": "_bountyId",
-          "type": "string"
-        }
-      ],
-      "name": "bountyIdToAddress",
-      "outputs": [
-        {
-          "internalType": "address",
-          "name": "bountyAddress",
-          "type": "address"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "inputs": [
-        {
-          "internalType": "bytes",
-          "name": "encoded",
-          "type": "bytes"
-        }
-      ],
-      "name": "hash",
-      "outputs": [
-        {
-          "internalType": "bytes32",
+          "internalType": "contract BountyFactory",
           "name": "",
-          "type": "bytes32"
+          "type": "address"
         }
       ],
-      "stateMutability": "pure",
+      "stateMutability": "view",
       "type": "function"
     },
     {
@@ -77,34 +33,11 @@
       "inputs": [
         {
           "internalType": "address",
-          "name": "_bountyAddress",
-          "type": "address"
-        },
-        {
-          "internalType": "string",
-          "name": "_bountyId",
-          "type": "string"
-        }
-      ],
-      "name": "setBountyAddressToBountyId",
-      "outputs": [],
-      "stateMutability": "nonpayable",
-      "type": "function"
-    },
-    {
-      "inputs": [
-        {
-          "internalType": "string",
-          "name": "_bountyId",
-          "type": "string"
-        },
-        {
-          "internalType": "address",
-          "name": "_bountyAddress",
+          "name": "_bountyFactory",
           "type": "address"
         }
       ],
-      "name": "setBountyIdToAddress",
+      "name": "setBountyFactory",
       "outputs": [],
       "stateMutability": "nonpayable",
       "type": "function"

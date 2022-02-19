@@ -23,7 +23,7 @@ import DatePicker from "react-datepicker";
 import { FaEthereum } from 'react-icons/fa';
 import client from '../../services/ethers/client';
 import StoreContext from '../../store/Store/StoreContext';
-import  styles from './styles.module.css';
+import styles from './styles.module.css';
 import Uploader from './Uploader';
 
 const Create = () => {
@@ -54,9 +54,9 @@ const Create = () => {
   }
 
   // Methods
-	function sleep(ms: number) {
-		return new Promise(resolve => setTimeout(resolve, ms));
-	}
+  function sleep(ms: number) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+  }
 
   const volume = 2;
   const [token, setToken] = useState(appState.tokens[0]);
@@ -65,105 +65,105 @@ const Create = () => {
   async function fundBounty(bountyAddress: any) {
     console.log('in fundBounty');
     console.log('bountyAddress:', bountyAddress);
-		// setIsLoading(true);
-		const volumeInWei = volume * 10 ** token.decimals;
+    // setIsLoading(true);
+    const volumeInWei = volume * 10 ** token.decimals;
 
-		if (volumeInWei == 0) {
-			// setError({ title: 'Zero Volume Sent', message: 'Must send a greater than 0 volume of tokens.' });
-			// setIsLoading(false);
-			return;
-		}
+    if (volumeInWei == 0) {
+      // setError({ title: 'Zero Volume Sent', message: 'Must send a greater than 0 volume of tokens.' });
+      // setIsLoading(false);
+      return;
+    }
 
-		const bigNumberVolumeInWei = ethers.BigNumber.from(volumeInWei.toString());
+    const bigNumberVolumeInWei = ethers.BigNumber.from(volumeInWei.toString());
 
-		let approveSucceeded = false;
+    let approveSucceeded = false;
 
-		try {
-			const callerBalance = await appState.client.balanceOf('library', 'account', token.address);
+    try {
+      const callerBalance = await appState.client.balanceOf('library', 'account', token.address);
 
       console.log('callerBalance:', callerBalance);
 
-			if (callerBalance < bigNumberVolumeInWei) {
+      if (callerBalance < bigNumberVolumeInWei) {
         console.log('Funds Too Low');
-				const title = 'Funds Too Low';
-				const message = 'You do not have sufficient funds for this deposit';
-				// setError({ message, title });
-				// setIsLoading(false);
-				// setShowErrorModal(true);
-				return;
-			}
-		} catch (error) {
+        const title = 'Funds Too Low';
+        const message = 'You do not have sufficient funds for this deposit';
+        // setError({ message, title });
+        // setIsLoading(false);
+        // setShowErrorModal(true);
+        return;
+      }
+    } catch (error) {
       console.log('hey error:');
-			console.log(error);
-			const title = 'Error';
-			const message = 'A contract call exception occurred';
-			// setError({ message, title });
-			// setIsLoading(false);
-			// setShowErrorModal(true);
-			return;
-		}
+      console.log(error);
+      const title = 'Error';
+      const message = 'A contract call exception occurred';
+      // setError({ message, title });
+      // setIsLoading(false);
+      // setShowErrorModal(true);
+      return;
+    }
 
-		try {
-			if (token.address != ethers.constants.AddressZero) {
-				await appState.client.approve(
-					'library',
-					bountyAddress,
-					token.address,
-					bigNumberVolumeInWei
-				);
-			}
-			approveSucceeded = true;
-		} catch (error) {
+    try {
+      if (token.address != ethers.constants.AddressZero) {
+        await appState.client.approve(
+          'library',
+          bountyAddress,
+          token.address,
+          bigNumberVolumeInWei
+        );
+      }
+      approveSucceeded = true;
+    } catch (error) {
       console.log('yo error:');
-			const { message, title } = appState.client.handleError(error, { bountyAddress });
+      const { message, title } = appState.client.handleError(error, { bountyAddress });
       console.log('message:', message);
       console.log('title:', title);
-			// setError({ message, title });
-			// setIsLoading(false);
-			// setShowErrorModal(true);
-		}
+      // setError({ message, title });
+      // setIsLoading(false);
+      // setShowErrorModal(true);
+    }
 
     console.log('approveSucceeded:', approveSucceeded);
 
-		if (approveSucceeded) {
-			try {
-				const fundTxnReceipt = await appState.client.fundBounty(
-					'library',
-					bountyAddress,
-					token.address,
-					bigNumberVolumeInWei
-				);
+    if (approveSucceeded) {
+      try {
+        const fundTxnReceipt = await appState.client.fundBounty(
+          'library',
+          bountyAddress,
+          token.address,
+          bigNumberVolumeInWei
+        );
         console.log('fundTxnReceipt:', fundTxnReceipt);
-				setTransactionHash(fundTxnReceipt.transactionHash);
+        setTransactionHash(fundTxnReceipt.transactionHash);
         console.log(`Successfully funded issue ${bountyAddress} with ${volume} ${token.symbol}!`);
-				// setSuccessMessage(
-				// 	`Successfully funded issue ${bountyAddress} with ${volume} ${token.symbol}!`
-				// );
-				// setShowSuccessModal(true);
-				// refreshBounty();
-				// setIsLoading(false);
-			} catch (error) {
+        // setSuccessMessage(
+        // 	`Successfully funded issue ${bountyAddress} with ${volume} ${token.symbol}!`
+        // );
+        // setShowSuccessModal(true);
+        // refreshBounty();
+        // setIsLoading(false);
+      } catch (error) {
         console.log('hi error:', error);
-				const { message, title } = appState.client.handleError(error, { bountyAddress });
-				// setError({ message, title });
-				// setIsLoading(false);
-				// setShowErrorModal(true);
-			}
-		}
-	}
+        const { message, title } = appState.client.handleError(error, { bountyAddress });
+        // setError({ message, title });
+        // setIsLoading(false);
+        // setShowErrorModal(true);
+      }
+    }
+  }
 
   // console.log('library', library);
   async function mintBounty() {
     console.log('minting bounty');
-		try {
-			// setMintBountyState(TRANSACTION_PENDING());
+    try {
+      // setMintBountyState(TRANSACTION_PENDING());
 
       // console.log('library', library);
-			const { bountyAddress, txnResponse } = await appState.client.mintBounty(
-				'library',
-				'randomid', // mintBountyState.issueId,
-				'randomOrgName', // mintBountyState.orgName
-			);
+      const { bountyAddress, txnResponse } = await appState.client.mintBounty(
+        'library',
+        'randomid', // mintBountyState.issueId,
+        'randomOrgName', // mintBountyState.orgName
+      );
 
       console.log('bountyAddress:', bountyAddress);
 
@@ -174,32 +174,32 @@ const Create = () => {
 
       // console.log('realAddress:', realAddress);
 
-      await fundBounty('0xae5f742b45809dacc419b88c6b13859c85567737');
+      await fundBounty(bountyAddress);
       // await fundBounty(realAddress);
 
-			// let bountyId = null;
-			// while (bountyId == 'undefined') {
-			// 	const bountyResp = await appState.openQSubgraphClient.getBounty(bountyAddress);
-			// 	bountyId = bountyResp?.bountyId;
-			// 	console.log('bountyId', bountyId);
-			// 	await sleep(500);
-			// }
+      // let bountyId = null;
+      // while (bountyId == 'undefined') {
+      // 	const bountyResp = await appState.openQSubgraphClient.getBounty(bountyAddress);
+      // 	bountyId = bountyResp?.bountyId;
+      // 	console.log('bountyId', bountyId);
+      // 	await sleep(500);
+      // }
 
-			// await sleep(1000);
+      // await sleep(1000);
 
       console.log('done')
 
-			// router.push(
-			// 	`${process.env.NEXT_PUBLIC_BASE_URL}/bounty/${bountyAddress}`
-			// );
-		} catch (error) {
-			console.log('error in mintboutny', error);
-			const { message, title } = appState.client.handleError(error);
+      // router.push(
+      // 	`${process.env.NEXT_PUBLIC_BASE_URL}/bounty/${bountyAddress}`
+      // );
+    } catch (error) {
+      console.log('error in mintboutny', error);
+      const { message, title } = appState.client.handleError(error);
       console.log('message', message);
       console.log('title', title);
-			// setMintBountyState(TRANSACTION_FAILURE({ message, title }));
-		}
-	}
+      // setMintBountyState(TRANSACTION_FAILURE({ message, title }));
+    }
+  }
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
@@ -210,7 +210,7 @@ const Create = () => {
     setEndDateInvalid(false);
     setPrizeAmountInvalid(false);
     console.log('endDate', endDate);
-    if (title === '' || !startDate || !endDate || !prizeAmount || prizeAmount === '0' ) {
+    if (title === '' || !startDate || !endDate || !prizeAmount || prizeAmount === '0') {
       setLoading(false);
     }
     if (title === '') {
@@ -225,7 +225,7 @@ const Create = () => {
       setEndDateInvalid(true);
       return;
     }
-    if (!prizeAmount || prizeAmount === '0' ) {
+    if (!prizeAmount || prizeAmount === '0') {
       setPrizeAmountInvalid(true);
       return;
     }

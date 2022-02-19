@@ -17,8 +17,8 @@ class Client {
 		 * @returns Web3Contract
 		 */
 	OpenQ = (signer) => {
-    // console.log('process.env.OPENQ_ADDRESS', process.env.OPENQ_ADDRESS);
-		const contract = new ethers.Contract('0x04E7831739bA350b17E36541148368f8541552d6', OpenQABI.abi, signer);
+		// console.log('process.env.OPENQ_ADDRESS', process.env.OPENQ_ADDRESS);
+		const contract = new ethers.Contract('0xB7f8BC63BbcaD18155201308C8f3540b07f84F5e', OpenQABI.abi, signer);
 		return contract;
 	};
 
@@ -36,32 +36,33 @@ class Client {
 	async mintBounty(library, issueId, organization) {
 		const promise = new Promise(async (resolve, reject) => {
 			// const signer = library.getSigner();
-      // MetaMask requires requesting permission to connect users accounts
-      await provider.send("eth_requestAccounts", []);
+			// MetaMask requires requesting permission to connect users accounts
+			await provider.send("eth_requestAccounts", []);
 
-      // The MetaMask plugin also allows signing transactions to
-      // send ether and pay to change state within the blockchain.
-      // For this, you need the account signer...
-      const signer = provider.getSigner();
+			// The MetaMask plugin also allows signing transactions to
+			// send ether and pay to change state within the blockchain.
+			// For this, you need the account signer...
+			const signer = provider.getSigner();
 
-      // console.log('library', library);
-      // const signer = library.getSigner();
-      console.log('signer', signer);
+			// console.log('library', library);
+			// const signer = library.getSigner();
+			console.log('signer', signer);
 
 			const contract = this.OpenQ(signer);
-      console.log('contract', contract);
+			console.log('contract', contract);
 			try {
-				const txnResponse = await contract.mintBounty('randomid13', 'organization');
-        console.log('txnResponse', txnResponse);
+				const txnResponse = await contract.mintBounty('sdfsdfre', 'organization');
+				console.log('txnResponse', txnResponse);
 				const txnReceipt = await txnResponse.wait();
-        console.log('txnReceipt', txnReceipt);
+				console.log('txnReceipt', txnReceipt);
 
 				const bountyId = txnReceipt.events[0].args.bountyId;
-        console.log('bountyId', bountyId);
+				console.log('bountyId', bountyId);
 				const issuerAddress = txnReceipt.events[0].args.issuerAddress;
-        console.log('issuerAddress', issuerAddress);
+				console.log('issuerAddress', issuerAddress);
 				const bountyAddress = txnReceipt.events[0].args.bountyAddress;
-        console.log('bountyAddress', bountyAddress);
+				console.log('bountyAddress', bountyAddress);
+				console.log('txnReceipt.events', txnReceipt.events);
 				resolve({ bountyId, issuerAddress, bountyAddress, txnReceipt, txnResponse });
 			} catch (err) {
 				reject(err);
@@ -70,35 +71,35 @@ class Client {
 		return promise;
 	}
 
-// 	async approve(library, _bountyAddress, _tokenAddress, _value) {
-// 		const promise = new Promise(async (resolve, reject) => {
-// 			const signer = library.getSigner();
+	// 	async approve(library, _bountyAddress, _tokenAddress, _value) {
+	// 		const promise = new Promise(async (resolve, reject) => {
+	// 			const signer = library.getSigner();
 
-// 			const contract = this.ERC20(_tokenAddress, signer);
-// 			try {
-// 				const txnResponse = await contract.approve(_bountyAddress, _value);
-// 				const txnReceipt = await txnResponse.wait();
-// 				resolve(txnReceipt);
-// 			} catch (error) {
-// 				reject(error);
-// 			}
-// 		});
-// 		return promise;
-// 	}
+	// 			const contract = this.ERC20(_tokenAddress, signer);
+	// 			try {
+	// 				const txnResponse = await contract.approve(_bountyAddress, _value);
+	// 				const txnReceipt = await txnResponse.wait();
+	// 				resolve(txnReceipt);
+	// 			} catch (error) {
+	// 				reject(error);
+	// 			}
+	// 		});
+	// 		return promise;
+	// 	}
 
 	async balanceOf(library, _callerAddress, _tokenAddress) {
 		const promise = new Promise(async (resolve, reject) => {
 			// const signer = library.getSigner(); // using MetaMask
 
-      // MetaMask requires requesting permission to connect users accounts
-      await provider.send("eth_requestAccounts", []);
+			// MetaMask requires requesting permission to connect users accounts
+			await provider.send("eth_requestAccounts", []);
 
-      // The MetaMask plugin also allows signing transactions to
-      // send ether and pay to change state within the blockchain.
-      // For this, you need the account signer...
-      const signer = provider.getSigner();
-      
-      const address = await signer.getAddress();
+			// The MetaMask plugin also allows signing transactions to
+			// send ether and pay to change state within the blockchain.
+			// For this, you need the account signer...
+			const signer = provider.getSigner();
+
+			const address = await signer.getAddress();
 
 			const contract = this.ERC20(_tokenAddress, signer);
 			try {
@@ -120,53 +121,53 @@ class Client {
 		const promise = new Promise(async (resolve, reject) => {
 			// const signer = library.getSigner();
 
-      // MetaMask requires requesting permission to connect users accounts
-      await provider.send("eth_requestAccounts", []);
+			// MetaMask requires requesting permission to connect users accounts
+			await provider.send("eth_requestAccounts", []);
 
-      // The MetaMask plugin also allows signing transactions to
-      // send ether and pay to change state within the blockchain.
-      // For this, you need the account signer...
-      const signer = provider.getSigner();
+			// The MetaMask plugin also allows signing transactions to
+			// send ether and pay to change state within the blockchain.
+			// For this, you need the account signer...
+			const signer = provider.getSigner();
 
 			const contract = this.OpenQ(signer);
-      console.log('contract', contract);
+			console.log('contract', contract);
 			try {
 				let txnResponse;
 				let txnReceipt;
 
 				if (_tokenAddress == ethers.constants.AddressZero) {
-          // txnResponse = await contract.fundBounty(_bountyAddress, _tokenAddress, _value);
-          txnResponse = await contract.fundBountyToken(_bountyAddress, _tokenAddress, _value, 1);
+					// txnResponse = await contract.fundBounty(_bountyAddress, _tokenAddress, _value);
+					txnResponse = await contract.fundBountyToken(_bountyAddress, _tokenAddress, _value, 1);
 					// txnResponse = await contract.fundBountyToken(_bountyAddress, _tokenAddress, _value, 1, { value: _value });
 				} else {
 					txnResponse = await contract.fundBountyToken(_bountyAddress, _tokenAddress, _value, 1);
 				}
 
-        console.log('txnResponse', txnResponse);
+				console.log('txnResponse', txnResponse);
 				txnReceipt = await txnResponse.wait();
 				resolve(txnReceipt);
 			} catch (error) {
-        console.log('error funding bounty', error);
+				console.log('error funding bounty', error);
 				reject(error);
 			}
 		});
 		return promise;
 	}
 
-// 	async refundDeposit(library, _bountyAddress, _depositId) {
-// 		const promise = new Promise(async (resolve, reject) => {
-// 			const signer = library.getSigner();
-// 			const contract = this.OpenQ(signer);
-// 			try {
-// 				const txnResponse = await contract.refundDeposit(_bountyAddress, _depositId);
-// 				const txnReceipt = await txnResponse.wait();
-// 				resolve(txnReceipt);
-// 			} catch (err) {
-// 				reject(err);
-// 			}
-// 		});
-// 		return promise;
-// 	}
+	// 	async refundDeposit(library, _bountyAddress, _depositId) {
+	// 		const promise = new Promise(async (resolve, reject) => {
+	// 			const signer = library.getSigner();
+	// 			const contract = this.OpenQ(signer);
+	// 			try {
+	// 				const txnResponse = await contract.refundDeposit(_bountyAddress, _depositId);
+	// 				const txnReceipt = await txnResponse.wait();
+	// 				resolve(txnReceipt);
+	// 			} catch (err) {
+	// 				reject(err);
+	// 			}
+	// 		});
+	// 		return promise;
+	// 	}
 
 	handleError(jsonRpcError, data) {
 		let errorString = jsonRpcError?.data?.message;
