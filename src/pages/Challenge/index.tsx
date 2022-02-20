@@ -47,7 +47,7 @@ const Challenge = ({}: ChallengeProps) => {
     getData();
   }, [id, db]);
 
-  if (loading) {
+  if (loading || !id) {
     return null;
   };
 
@@ -84,7 +84,7 @@ const Challenge = ({}: ChallengeProps) => {
           <Box height={{ base: 10, md: 30, lg: 75 }} />
         </>
       )}
-      <Uploader />
+      <Uploader bountyId={id} />
       <MyDivider />
       <DisplaySubmissions />
       <Footer />

@@ -223,6 +223,19 @@
       "inputs": [
         {
           "indexed": false,
+          "internalType": "string",
+          "name": "myString",
+          "type": "string"
+        }
+      ],
+      "name": "SubmissionReceived",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
           "internalType": "bytes32",
           "name": "depositId",
           "type": "bytes32"

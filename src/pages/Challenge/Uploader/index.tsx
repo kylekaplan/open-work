@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import {
   VStack,
   Text,
@@ -6,9 +6,12 @@ import {
   useStyleConfig,
   Flex,
 } from '@chakra-ui/react';
+import { doc, setDoc } from "firebase/firestore";
 import Dropzone, { defaultClassNames, IDropzoneProps, IFileWithMeta, ILayoutProps } from 'react-dropzone-uploader'
 import { create } from "ipfs-http-client";
 import 'react-dropzone-uploader/dist/styles.css';
+import StoreContext from '../../../store/Store/StoreContext';
+import { useDb } from '../../../hooks/useFirebase';
 
 const client = create({ url: 'https://ipfs.infura.io:5001/api/v0'});
 
@@ -47,8 +50,15 @@ const InputContent = () => {
   );
 }
 
-
-const Uploader = () => {
+// we need to call submit method(_bountyId)
+interface UploaderProps {
+  bountyId: string;
+}
+const Uploader = ({
+  bountyId
+}: UploaderProps) => {
+  const db = useDb();
+  const [appState] = useContext(StoreContext);
   const [file, setFile] = useState<Buffer | null>(null);
   const [urlArr, setUrlArr] = useState<any[]>([]);
 
@@ -81,11 +91,31 @@ const Uploader = () => {
         const created = await client.add(arrayBuffer);
         const url = `https://ipfs.infura.io/ipfs/${created.path}`;
         console.log('url', url);
-        setUrlArr(prev => [...prev, url]);    
+        setUrlArr(prev => [...prev, { src: url }]);
       } catch (error) {
         console.log(error);
       }
       f.remove() 
+    } // end for loop
+    // send to the bounty contract
+    const result = await appState.client.makeSubmission(bountyId);
+    console.log('result', result);
+    const { txnResponse, txnReceipt } = result;
+    const { events } = txnReceipt;
+    const { data } = events[0];
+    console.log('data', data);
+    try {
+      if (db) {
+        const submissionsRef = doc(db, "bounties", bountyId, "submissions", data);
+        setDoc(submissionsRef, {
+          id: data,
+          date: new Date(),
+          files: urlArr,
+          postedBy: txnReceipt.from,
+        });
+      } else { console.log('error no db') }
+    } catch (error) {
+      console.log('error uploading to firebase', error);
     }
   }
   

@@ -21,7 +21,9 @@ class Client {
 		// console.log('process.env.OPENQ_ADDRESS', process.env.OPENQ_ADDRESS);
 		// const contract = new ethers.Contract('0xB7f8BC63BbcaD18155201308C8f3540b07f84F5e', OpenQABI.abi, signer);
     // const contract = new ethers.Contract('0xBC9129Dc0487fc2E169941C75aABC539f208fb01', OpenQABI.abi, signer);
-    const contract = new ethers.Contract('0x3450C64A1A3561A41AEF1ec4Ad949519C8dA1708', OpenQABI.abi, signer);
+    // const contract = new ethers.Contract('0x3450C64A1A3561A41AEF1ec4Ad949519C8dA1708', OpenQABI.abi, signer); // working for fundBonty
+		// const contract = new ethers.Contract('0x75eea904e83c81c32B33eAc833e3A742e6c6dd7b', OpenQABI.abi, signer); // added event
+		const contract = new ethers.Contract('0x0b80e3f7b9038Cc182b1F647F907eD8DB00aC0Ff', OpenQABI.abi, signer); // local
 		return contract;
 	};
 
@@ -35,6 +37,39 @@ class Client {
 		const contract = new ethers.Contract(tokenAddress, ERC20ABI.abi, signer);
 		return contract;
 	};
+
+
+	async makeSubmission(bountyId) {
+		const promise = new Promise(async (resolve, reject) => {
+			// const signer = library.getSigner();
+			// MetaMask requires requesting permission to connect users accounts
+			await provider.send("eth_requestAccounts", []);
+
+			// The MetaMask plugin also allows signing transactions to
+			// send ether and pay to change state within the blockchain.
+			// For this, you need the account signer...
+			const signer = provider.getSigner();
+
+			// console.log('library', library);
+			// const signer = library.getSigner();
+			console.log('signer', signer);
+
+			const contract = this.OpenQ(signer);
+			console.log('contract', contract);
+			try {
+				const txnResponse = await contract.submitMethod(bountyId);
+				console.log('txnResponse', txnResponse);
+				const txnReceipt = await txnResponse.wait();
+				console.log('txnReceipt', txnReceipt);
+
+				resolve({ txnReceipt, txnResponse });
+			} catch (err) {
+				reject(err);
+			}
+		});
+		return promise;
+	}
+
 
 	async mintBounty(library, uuid, organization) {
 		const promise = new Promise(async (resolve, reject) => {

@@ -27,7 +27,7 @@ interface TopFoldProps {
   postedBy: string;
   startDate: Date;
   endDate: Date;
-  prizeAmount: { contract: string; amount: string };
+  prizeAmount: string;
 }
 const TopFold = ({
   title,
@@ -46,7 +46,7 @@ const TopFold = ({
           postedBy={postedBy}
           startDate={startDate}
           endDate={endDate}
-          prizeAmount={prizeAmount.amount}
+          prizeAmount={prizeAmount}
         />
       </Box>
       <Box ml={{ base: 0, md: 30 }}>
@@ -65,7 +65,7 @@ const TopFold = ({
               postedBy={postedBy}
               startDate={startDate}
               endDate={endDate}
-              prizeAmount={prizeAmount.amount}
+              prizeAmount={prizeAmount}
             />
           </Box>
           <Text
