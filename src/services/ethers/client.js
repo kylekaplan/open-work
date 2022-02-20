@@ -20,7 +20,8 @@ class Client {
 	OpenQ = (signer) => {
 		// console.log('process.env.OPENQ_ADDRESS', process.env.OPENQ_ADDRESS);
 		// const contract = new ethers.Contract('0xB7f8BC63BbcaD18155201308C8f3540b07f84F5e', OpenQABI.abi, signer);
-    const contract = new ethers.Contract('0xBC9129Dc0487fc2E169941C75aABC539f208fb01', OpenQABI.abi, signer);
+    // const contract = new ethers.Contract('0xBC9129Dc0487fc2E169941C75aABC539f208fb01', OpenQABI.abi, signer);
+    const contract = new ethers.Contract('0x3450C64A1A3561A41AEF1ec4Ad949519C8dA1708', OpenQABI.abi, signer);
 		return contract;
 	};
 
@@ -138,9 +139,7 @@ class Client {
 				let txnReceipt;
 
 				if (_tokenAddress == ethers.constants.AddressZero) {
-					// txnResponse = await contract.fundBounty(_bountyAddress, _tokenAddress, _value);
-					txnResponse = await contract.fundBountyToken(_bountyAddress, _tokenAddress, _value, 1);
-					// txnResponse = await contract.fundBountyToken(_bountyAddress, _tokenAddress, _value, 1, { value: _value });
+					txnResponse = await contract.fundBountyToken(_bountyAddress, _tokenAddress, _value, 1, { value: _value });
 				} else {
 					txnResponse = await contract.fundBountyToken(_bountyAddress, _tokenAddress, _value, 1);
 				}
