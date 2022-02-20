@@ -29,11 +29,11 @@ const Card = ({
   return (
     <Box maxW='2xl' borderWidth='1px' borderRadius='lg' overflow="hidden">
       {!(files.length > 1) // not greater than 1
-        ? <Image src={files[0].src} alt={imageAlt} />
+        ? <Image src={files[0]?.src} alt={imageAlt} />
         : (
           <Carousel>
             {files.map((file, index) => (
-                <div key={file.src} >
+                <div key={file?.src} >
                   <Image src={file.src} />
                 </div>
             ))}

@@ -10,6 +10,7 @@ import {
 } from '@chakra-ui/react';
 import { FaEthereum } from 'react-icons/fa';
 import BorderedBox from '../../../atoms/BorderedBox';
+import ClaimButton from '../../../atoms/ClaimButton';
 import ConnectWalletButton from '../../../atoms/ConnectWalletButton';
 import TimeLeft from '../../../molecules/TimeLeft';
 import NFTViewer from '../NFTViewer.tsx';
@@ -23,18 +24,22 @@ import NFTViewer from '../NFTViewer.tsx';
 // };
 
 interface TopFoldProps {
+  id: string;
   title: string;
   postedBy: string;
   startDate: Date;
   endDate: Date;
-  prizeAmount: { contract: string; amount: string };
+  prizeAmount: string;
+  isWinnerSelected: boolean;
 }
 const TopFold = ({
+  id,
   title,
   postedBy,
   startDate,
   endDate,
   prizeAmount,
+  isWinnerSelected,
 }: TopFoldProps) => {
   // const endDate = new Date('Febuary 20, 2022 12:00:00');
   return (
@@ -46,7 +51,7 @@ const TopFold = ({
           postedBy={postedBy}
           startDate={startDate}
           endDate={endDate}
-          prizeAmount={prizeAmount.amount}
+          prizeAmount={prizeAmount}
         />
       </Box>
       <Box ml={{ base: 0, md: 30 }}>
@@ -56,7 +61,7 @@ const TopFold = ({
             fontWeight="bold"
             fontFamily="'Work Sans', sans-serif;"
           >
-            Create an original Ultra Sound Money meme.
+            {title}
           </Heading>
           {/* NFT Viewer on small screens */}
           <Box width="100%" display={{ base: 'block', md: 'none' }}>
@@ -65,14 +70,14 @@ const TopFold = ({
               postedBy={postedBy}
               startDate={startDate}
               endDate={endDate}
-              prizeAmount={prizeAmount.amount}
+              prizeAmount={prizeAmount}
             />
           </Box>
           <Text
             fontSize="md"
             fontFamily="'Poppins', sans-serif"
           >
-            By: <Text as="span" sx={useStyleConfig('Text', { variant: 'teal' })}>kylekaplan.eth</Text>
+            By: <Text as="span" sx={useStyleConfig('Text', { variant: 'teal' })}>{postedBy}</Text>
           </Text>
         </VStack>
         <BorderedBox
@@ -96,9 +101,12 @@ const TopFold = ({
             </Text>
             <HStack fontSize="30px">
               <FaEthereum />
-              <Text>0.01</Text>
+              <Text>{prizeAmount}</Text>
             </HStack>
-            <ConnectWalletButton />
+            {isWinnerSelected
+              ? <ClaimButton bountyId={id} />
+              : <ConnectWalletButton />
+            }
           </Box>
         </BorderedBox>
       </Box>

@@ -1,0 +1,63 @@
+{
+  "_format": "hh-sol-artifact-1",
+  "contractName": "OpenQStorable",
+  "sourceName": "contracts/OpenQ/OpenQStorable.sol",
+  "abi": [
+    {
+      "inputs": [],
+      "name": "bountyFactory",
+      "outputs": [
+        {
+          "internalType": "contract BountyFactory",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "openQStorage",
+      "outputs": [
+        {
+          "internalType": "contract OpenQStorage",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_bountyFactory",
+          "type": "address"
+        }
+      ],
+      "name": "setBountyFactory",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_openQStorage",
+          "type": "address"
+        }
+      ],
+      "name": "setOpenQStorage",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "linkReferences": {},
+  "deployedLinkReferences": {}
+}
