@@ -21,13 +21,10 @@ import localTokens from '../../constants/local-tokens.json';
 import mumbaiTokenMetadata from '../../constants/polygon-mumbai.json';
 import localTokenMetadata from '../../constants/local.json';
 
-require('dotenv').config({path: '../../../.env'});
-
-console.log('process:', process);
-console.log('process.env.DEPLOY_ENV:', process.env.DEPLOY_ENV);
+// console.log('process.env.DEPLOY_ENV:', process.env.DEPLOY_ENV);
 // process.env.DEPLOY_ENV = 'development';
 let InitialState = {};
-let enviro = 'local';
+let enviro = 'development';
 switch (enviro) { // process.env.DEPLOY_ENV
 case 'local':
 	InitialState = {

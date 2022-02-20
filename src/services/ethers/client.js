@@ -23,7 +23,7 @@ class Client {
     // const contract = new ethers.Contract('0xBC9129Dc0487fc2E169941C75aABC539f208fb01', OpenQABI.abi, signer);
     // const contract = new ethers.Contract('0x3450C64A1A3561A41AEF1ec4Ad949519C8dA1708', OpenQABI.abi, signer); // working for fundBonty
 		// const contract = new ethers.Contract('0x75eea904e83c81c32B33eAc833e3A742e6c6dd7b', OpenQABI.abi, signer); // added event
-		const contract = new ethers.Contract('0x0b80e3f7b9038Cc182b1F647F907eD8DB00aC0Ff', OpenQABI.abi, signer); // local
+		const contract = new ethers.Contract('0x832A08D6a6375B66919B00acCfcbB5dC44cb3E64', OpenQABI.abi, signer); // local
 		return contract;
 	};
 

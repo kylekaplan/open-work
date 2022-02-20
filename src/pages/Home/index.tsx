@@ -58,7 +58,7 @@ const Home = () => {
           // fontFamily='"Baloo Bhaijaan 2"'
           className='headerText'
         >
-          Earn Crypto by Making Memes
+          Meme to Earn
         </Heading>
         <Text
           color='gray.350'
