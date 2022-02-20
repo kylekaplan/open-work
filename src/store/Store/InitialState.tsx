@@ -27,7 +27,7 @@ console.log('process:', process);
 console.log('process.env.DEPLOY_ENV:', process.env.DEPLOY_ENV);
 // process.env.DEPLOY_ENV = 'development';
 let InitialState = {};
-let enviro = 'development';
+let enviro = 'local';
 switch (enviro) { // process.env.DEPLOY_ENV
 case 'local':
 	InitialState = {

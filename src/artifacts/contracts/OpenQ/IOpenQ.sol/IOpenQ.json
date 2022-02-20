@@ -224,6 +224,19 @@
         {
           "indexed": false,
           "internalType": "bytes32",
+          "name": "submissionId",
+          "type": "bytes32"
+        }
+      ],
+      "name": "SubmissionReceived",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "bytes32",
           "name": "depositId",
           "type": "bytes32"
         },
