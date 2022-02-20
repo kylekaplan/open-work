@@ -65,9 +65,9 @@ const ConnectWalletButton = () => {
         <Button colorScheme="teal" mt={4} onClick={connectWallet}>
           Connect your wallet
         </Button>
-        <Button colorScheme="teal" mt={4} onClick={signInWithEthereum}>
+        {/* <Button colorScheme="teal" mt={4} onClick={signInWithEthereum}>
           Sign in with Ethereum
-        </Button>
+        </Button> */}
       </>
     );
 };

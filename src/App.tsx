@@ -22,6 +22,7 @@ import Challenge from "./pages/Challenge";
 import Home from "./pages/Home"
 import NotFound from "./pages/NotFound";
 import Create from './pages/Create';
+import SelectWinner from './pages/SelectWinner';
 
 
 const colors = {
@@ -116,6 +117,7 @@ export const App = () => (
           <Routes>
             <Route path="/" element={<Home/>}/>
             <Route path="/challenge/:id" element={<Challenge />}/>
+            <Route path="/challenge/:id/select-winner" element={<SelectWinner />}/>
             <Route path="/create" element={<Create />}/>
             <Route path="*" element={<NotFound/>}/>
           </Routes>

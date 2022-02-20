@@ -38,6 +38,60 @@ class Client {
 		return contract;
 	};
 
+	async claimBounty(bountyId) {
+		const promise = new Promise(async (resolve, reject) => {
+			// const signer = library.getSigner();
+			// MetaMask requires requesting permission to connect users accounts
+			await provider.send("eth_requestAccounts", []);
+			// const address = await provider.listAccounts()
+
+			// The MetaMask plugin also allows signing transactions to
+			// send ether and pay to change state within the blockchain.
+			// For this, you need the account signer...
+			const signer = provider.getSigner();
+			console.log('signer', signer);
+
+			const myAddress = await signer.getAddress();
+
+			console.log('account:', myAddress);
+
+			const contract = this.OpenQ(signer);
+			console.log('contract', contract);
+			try {
+				const txnResponse = await contract.claimBounty(bountyId, myAddress);
+				const txnReceipt = await txnResponse.wait();
+				resolve({ txnReceipt, txnResponse });
+			} catch (err) {
+				reject(err);
+			}
+		});
+		return promise;
+	}
+
+	async selectWinner(submissionId, bountyId) {
+		const promise = new Promise(async (resolve, reject) => {
+			// const signer = library.getSigner();
+			// MetaMask requires requesting permission to connect users accounts
+			await provider.send("eth_requestAccounts", []);
+
+			// The MetaMask plugin also allows signing transactions to
+			// send ether and pay to change state within the blockchain.
+			// For this, you need the account signer...
+			const signer = provider.getSigner();
+
+			const contract = this.OpenQ(signer);
+			console.log('contract', contract);
+			try {
+				const txnResponse = await contract.selectWinner(submissionId, bountyId);
+				const txnReceipt = await txnResponse.wait();
+
+				resolve({ txnReceipt, txnResponse });
+			} catch (err) {
+				reject(err);
+			}
+		});
+		return promise;
+	}
 
 	async makeSubmission(bountyId) {
 		const promise = new Promise(async (resolve, reject) => {
@@ -50,17 +104,11 @@ class Client {
 			// For this, you need the account signer...
 			const signer = provider.getSigner();
 
-			// console.log('library', library);
-			// const signer = library.getSigner();
-			console.log('signer', signer);
-
 			const contract = this.OpenQ(signer);
 			console.log('contract', contract);
 			try {
 				const txnResponse = await contract.submitMethod(bountyId);
-				console.log('txnResponse', txnResponse);
 				const txnReceipt = await txnResponse.wait();
-				console.log('txnReceipt', txnReceipt);
 
 				resolve({ txnReceipt, txnResponse });
 			} catch (err) {

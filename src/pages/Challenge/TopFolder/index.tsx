@@ -10,6 +10,7 @@ import {
 } from '@chakra-ui/react';
 import { FaEthereum } from 'react-icons/fa';
 import BorderedBox from '../../../atoms/BorderedBox';
+import ClaimButton from '../../../atoms/ClaimButton';
 import ConnectWalletButton from '../../../atoms/ConnectWalletButton';
 import TimeLeft from '../../../molecules/TimeLeft';
 import NFTViewer from '../NFTViewer.tsx';
@@ -23,18 +24,22 @@ import NFTViewer from '../NFTViewer.tsx';
 // };
 
 interface TopFoldProps {
+  id: string;
   title: string;
   postedBy: string;
   startDate: Date;
   endDate: Date;
   prizeAmount: string;
+  isWinnerSelected: boolean;
 }
 const TopFold = ({
+  id,
   title,
   postedBy,
   startDate,
   endDate,
   prizeAmount,
+  isWinnerSelected,
 }: TopFoldProps) => {
   // const endDate = new Date('Febuary 20, 2022 12:00:00');
   return (
@@ -98,7 +103,10 @@ const TopFold = ({
               <FaEthereum />
               <Text>{prizeAmount}</Text>
             </HStack>
-            <ConnectWalletButton />
+            {isWinnerSelected
+              ? <ClaimButton bountyId={id} />
+              : <ConnectWalletButton />
+            }
           </Box>
         </BorderedBox>
       </Box>

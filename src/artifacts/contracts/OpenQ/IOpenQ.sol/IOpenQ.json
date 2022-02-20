@@ -223,9 +223,9 @@
       "inputs": [
         {
           "indexed": false,
-          "internalType": "string",
-          "name": "myString",
-          "type": "string"
+          "internalType": "bytes32",
+          "name": "submissionId",
+          "type": "bytes32"
         }
       ],
       "name": "SubmissionReceived",

@@ -22,6 +22,7 @@ const Challenge = ({}: ChallengeProps) => {
   let { id } = useParams();
   const [fireData, setFireData] = useState<any>(null);
   const [loading, setLoading] = useState<boolean>(true);
+  const [loadingSubmission, setLoadingSubmission] = useState<boolean>(false);
 
   const getData = async () => {
     console.log('type of id:', typeof id);
@@ -31,7 +32,7 @@ const Challenge = ({}: ChallengeProps) => {
 
       if (docSnap.exists()) {
         console.log("Document data:", docSnap.data());
-        setFireData(docSnap.data());
+        setFireData({ ...docSnap.data() });
         setLoading(false);
       } else {
         // doc.data() will be undefined in this case
@@ -60,6 +61,7 @@ const Challenge = ({}: ChallengeProps) => {
     prizeAmount,
     description,
     examplesImages,
+    winner,
   } = fireData;
   console.log('postedBy:', postedBy);
   return (
@@ -69,11 +71,13 @@ const Challenge = ({}: ChallengeProps) => {
       maxWidth="1600px"
     >
       <TopFold
+        id={id}
         title={title}
         postedBy={postedBy}
         startDate={startDate}
         endDate={endDate}
         prizeAmount={prizeAmount.amount}
+        isWinnerSelected={winner}
       />
       <MyDivider />
       {description && <Description description={description} />}
@@ -84,9 +88,9 @@ const Challenge = ({}: ChallengeProps) => {
           <Box height={{ base: 10, md: 30, lg: 75 }} />
         </>
       )}
-      <Uploader bountyId={id} />
+      <Uploader bountyId={id} refreshData={getData} setLoading={setLoadingSubmission} />
       <MyDivider />
-      <DisplaySubmissions />
+      {!loadingSubmission && <DisplaySubmissions />}
       <Footer />
     </Box>
   );

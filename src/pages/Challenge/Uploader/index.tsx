@@ -53,9 +53,13 @@ const InputContent = () => {
 // we need to call submit method(_bountyId)
 interface UploaderProps {
   bountyId: string;
+  refreshData: () => void;
+  setLoading?: (isLoading: boolean) => void;
 }
 const Uploader = ({
-  bountyId
+  bountyId,
+  refreshData,
+  setLoading,
 }: UploaderProps) => {
   const db = useDb();
   const [appState] = useContext(StoreContext);
@@ -82,8 +86,19 @@ const Uploader = ({
   const getUploadParams: IDropzoneProps['getUploadParams'] = () => ({ url: 'https://httpbin.org/post' })
 
   const handleSubmit: IDropzoneProps['onSubmit'] = async (files, allFiles) => {
+    if (setLoading) {
+      setLoading(true);
+    }
+    // send to the bounty contract
+    const result = await appState.client.makeSubmission(bountyId);
+    console.log('result', result);
+    const { txnResponse, txnReceipt } = result;
+    const { events } = txnReceipt;
+    const { data } = events[0];
+    console.log('data', data);
     console.log('files:', files);
     console.log('allFiles:', allFiles);
+    let tmpArr = [];
     for (let i = 0; i < allFiles.length; i++) {
       const f = allFiles[i];
       let arrayBuffer = await readFileAsync(f);
@@ -92,30 +107,29 @@ const Uploader = ({
         const url = `https://ipfs.infura.io/ipfs/${created.path}`;
         console.log('url', url);
         setUrlArr(prev => [...prev, { src: url }]);
+        tmpArr.push({ src: url });
       } catch (error) {
         console.log(error);
       }
       f.remove() 
     } // end for loop
-    // send to the bounty contract
-    const result = await appState.client.makeSubmission(bountyId);
-    console.log('result', result);
-    const { txnResponse, txnReceipt } = result;
-    const { events } = txnReceipt;
-    const { data } = events[0];
-    console.log('data', data);
     try {
+      console.log('urlArr', urlArr);
       if (db) {
         const submissionsRef = doc(db, "bounties", bountyId, "submissions", data);
         setDoc(submissionsRef, {
           id: data,
           date: new Date(),
-          files: urlArr,
+          files: tmpArr,
           postedBy: txnReceipt.from,
         });
       } else { console.log('error no db') }
     } catch (error) {
       console.log('error uploading to firebase', error);
+    }
+    refreshData();
+    if (setLoading) {
+      setLoading(false);
     }
   }
   
