@@ -285,11 +285,7 @@ const Create = () => {
   // console.log('realAddress:', realAddress);
 
   return (
-    <Box
-      m="0 auto"
-      padding={{ base: "30px 5px", md: "30px 40px", lg: "30px 60px", xl: "30px 80px" }}
-      maxWidth="1600px"
-    >
+    <div className="mainGrid">
       <h2>Create Meme Bounty</h2>
       <VStack spacing={8}>
         <FormControl mt={45} isRequired isInvalid={titleInvalid}>
@@ -320,12 +316,7 @@ const Create = () => {
           <Uploader handleChangeStatus={handleChangeStatus} />
         </FormControl> */}
 
-        <Grid
-          gap={10}
-          templateColumns='repeat(2, 1fr)'
-          alignSelf="flex-start"
-        >
-          <GridItem colSpan={{ base: 2, md: 1 }}>
+
             <FormControl isRequired isInvalid={startDateInvalid}>
               <FormLabel>Start Date:</FormLabel>
               <DatePicker
@@ -341,7 +332,6 @@ const Create = () => {
                 <FormErrorMessage>Start date is required and must be before end date.</FormErrorMessage>
               )}
             </FormControl>
-          </GridItem>
 
           <GridItem colSpan={{ base: 2, md: 1 }}>
             <FormControl isRequired isInvalid={endDateInvalid}>
@@ -360,7 +350,6 @@ const Create = () => {
               )}
             </FormControl>
           </GridItem>
-        </Grid>
 
         <FormControl isRequired isInvalid={prizeAmountInvalid}>
           <FormLabel>Prize Amount:</FormLabel>
@@ -397,7 +386,7 @@ const Create = () => {
         </Button>
 
       </VStack>
-    </Box>
+    </div>
   )
 };
 

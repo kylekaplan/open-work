@@ -1,11 +1,8 @@
-import { Box } from '@chakra-ui/react';
 import { useParams } from 'react-router-dom';
 import { doc, getDoc } from "firebase/firestore";
 import './challenge.css';
 import Uploader from './Uploader';
-import Footer from '../../organsims/Footer';
 import Description from './Accordions/Description';
-import ExampleImages from './Accordions/ExampleImages';
 import TopFold from './TopFolder';
 import DisplaySubmissions from '../../organsims/DisplaySubmissions';
 import { useEffect, useState } from 'react';
@@ -31,7 +28,6 @@ const Challenge = ({}: ChallengeProps) => {
         setFireData({ ...docSnap.data() });
         setLoading(false);
       } else {
-        // doc.data() will be undefined in this case
         console.log("No such document!");
         setLoading(false);
       }
@@ -56,7 +52,6 @@ const Challenge = ({}: ChallengeProps) => {
     postedBy,
     prizeAmount,
     description,
-    examplesImages,
     winner,
   } = fireData;
   console.log('postedBy:', postedBy);
@@ -70,9 +65,10 @@ const Challenge = ({}: ChallengeProps) => {
         endDate={endDate}
         prizeAmount={prizeAmount.amount}
         isWinnerSelected={winner}
+        discription={description}
       />
-      {description && <Description description={description} />}
       <Uploader bountyId={id} refreshData={getData} setLoading={setLoadingSubmission} />
+      {!loadingSubmission && <DisplaySubmissions />}
     </div>
   );
 }
