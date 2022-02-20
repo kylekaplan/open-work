@@ -2,6 +2,7 @@ import { ethers } from 'ethers';
 import OpenQABI from '../../artifacts/contracts/OpenQ/Implementations/OpenQV0.sol/OpenQV0.json';
 import ERC20ABI from '../../artifacts/@openzeppelin/contracts/token/ERC20/ERC20.sol/ERC20.json';
 import jsonRpcErrors from './JsonRPCErrors';
+require('dotenv').config();
 
 // A Web3Provider wraps a standard Web3 provider, which is
 // what MetaMask injects as window.ethereum into each page
@@ -18,7 +19,8 @@ class Client {
 		 */
 	OpenQ = (signer) => {
 		// console.log('process.env.OPENQ_ADDRESS', process.env.OPENQ_ADDRESS);
-		const contract = new ethers.Contract('0xB7f8BC63BbcaD18155201308C8f3540b07f84F5e', OpenQABI.abi, signer);
+		// const contract = new ethers.Contract('0xB7f8BC63BbcaD18155201308C8f3540b07f84F5e', OpenQABI.abi, signer);
+    const contract = new ethers.Contract('0xBC9129Dc0487fc2E169941C75aABC539f208fb01', OpenQABI.abi, signer);
 		return contract;
 	};
 
@@ -33,7 +35,7 @@ class Client {
 		return contract;
 	};
 
-	async mintBounty(library, issueId, organization) {
+	async mintBounty(library, uuid, organization) {
 		const promise = new Promise(async (resolve, reject) => {
 			// const signer = library.getSigner();
 			// MetaMask requires requesting permission to connect users accounts
@@ -51,7 +53,7 @@ class Client {
 			const contract = this.OpenQ(signer);
 			console.log('contract', contract);
 			try {
-				const txnResponse = await contract.mintBounty('sdfsdfre', 'organization');
+				const txnResponse = await contract.mintBounty(uuid, 'organization');
 				console.log('txnResponse', txnResponse);
 				const txnReceipt = await txnResponse.wait();
 				console.log('txnReceipt', txnReceipt);

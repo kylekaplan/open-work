@@ -75,7 +75,9 @@ const Challenge = ({}: ChallengeProps) => {
       <MyDivider />
       <Description description={description} />
       <MyDivider />
-      <ExampleImages imgs={examplesImages} />
+      {examplesImages && (
+        <ExampleImages imgs={examplesImages} />
+      )}
       <Box height={{ base: 10, md: 30, lg: 75 }} />
       <Uploader />
       <MyDivider />

@@ -15,20 +15,24 @@ import {
   NumberInputField,
   HStack,
   Button,
+  useToast,
 } from '@chakra-ui/react'
-import { useWeb3React } from '@web3-react/core';
+import { useNavigate } from "react-router-dom";
+import UUID from "node-uuid";
 import { ethers } from 'ethers';
 import { useContext, useState } from 'react';
 import DatePicker from "react-datepicker";
 import { FaEthereum } from 'react-icons/fa';
-import client from '../../services/ethers/client';
+import { doc, setDoc } from "firebase/firestore";
 import StoreContext from '../../store/Store/StoreContext';
 import styles from './styles.module.css';
 import Uploader from './Uploader';
+import { useDb } from '../../hooks/useFirebase';
 
 const Create = () => {
-  const stuff = useWeb3React();
-  console.log('library stuff:', stuff);
+  const db = useDb();
+  const toast = useToast();
+  let navigate = useNavigate();
   const { colorMode } = useColorMode();
   const [appState] = useContext(StoreContext);
   const [startDate, setStartDate] = useState<Date | null>(new Date());
@@ -58,7 +62,6 @@ const Create = () => {
     return new Promise(resolve => setTimeout(resolve, ms));
   }
 
-  const volume = 2;
   const [token, setToken] = useState(appState.tokens[0]);
   const [transactionHash, setTransactionHash] = useState(null);
 
@@ -66,7 +69,8 @@ const Create = () => {
     console.log('in fundBounty');
     console.log('bountyAddress:', bountyAddress);
     // setIsLoading(true);
-    const volumeInWei = volume * 10 ** token.decimals;
+    console.log('parseFloat(prizeAmount):', parseFloat(prizeAmount));
+    const volumeInWei = parseFloat(prizeAmount) * 10 ** token.decimals;
 
     if (volumeInWei == 0) {
       // setError({ title: 'Zero Volume Sent', message: 'Must send a greater than 0 volume of tokens.' });
@@ -135,13 +139,14 @@ const Create = () => {
         );
         console.log('fundTxnReceipt:', fundTxnReceipt);
         setTransactionHash(fundTxnReceipt.transactionHash);
-        console.log(`Successfully funded issue ${bountyAddress} with ${volume} ${token.symbol}!`);
+        console.log(`Successfully funded issue ${bountyAddress} with ${parseFloat(prizeAmount)} ${token.symbol}!`);
         // setSuccessMessage(
         // 	`Successfully funded issue ${bountyAddress} with ${volume} ${token.symbol}!`
         // );
         // setShowSuccessModal(true);
         // refreshBounty();
         // setIsLoading(false);
+        return fundTxnReceipt;
       } catch (error) {
         console.log('hi error:', error);
         const { message, title } = appState.client.handleError(error, { bountyAddress });
@@ -153,15 +158,15 @@ const Create = () => {
   }
 
   // console.log('library', library);
-  async function mintBounty() {
+  async function mintBounty(uuid: string) {
     console.log('minting bounty');
     try {
       // setMintBountyState(TRANSACTION_PENDING());
 
       // console.log('library', library);
-      const { bountyAddress, txnResponse } = await appState.client.mintBounty(
+      const { bountyAddress } = await appState.client.mintBounty(
         'library',
-        'randomid', // mintBountyState.issueId,
+        uuid, // mintBountyState.issueId,
         'randomOrgName', // mintBountyState.orgName
       );
 
@@ -174,7 +179,6 @@ const Create = () => {
 
       // console.log('realAddress:', realAddress);
 
-      await fundBounty(bountyAddress);
       // await fundBounty(realAddress);
 
       // let bountyId = null;
@@ -188,6 +192,7 @@ const Create = () => {
       // await sleep(1000);
 
       console.log('done')
+      return bountyAddress;
 
       // router.push(
       // 	`${process.env.NEXT_PUBLIC_BASE_URL}/bounty/${bountyAddress}`
@@ -203,8 +208,8 @@ const Create = () => {
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
-    await mintBounty();
     setLoading(true);
+    const uuid = UUID.v4();
     setTitleInvalid(false);
     setStartDateInvalid(false);
     setEndDateInvalid(false);
@@ -232,27 +237,40 @@ const Create = () => {
     if (startDate && endDate && startDate > endDate) {
       setStartDateInvalid(true);
     }
-    const bounty = {
-      title,
-      description,
-      prizeAmount,
-      startDate,
-      endDate,
-    };
     console.log('files', files);
-    console.log('bounty', bounty);
-    // await mintBounty();
-    // let bountyId = null;
-    // while (bountyId == 'undefined') {
-    //   const bountyResp = await appState.openQSubgraphClient.getBounty(bountyAddress);
-    //   bountyId = bountyResp?.bountyId;
-    //   console.log('bountyId', bountyId);
-    //   await sleep(500);
-    // }
+    // TODO: wrap mint bounty in try/catch
+    const bountyAddress = await mintBounty(uuid);
+    const fundTxnReceipt = await fundBounty(bountyAddress);
+    // upload to firebase
+    console.log('uploading to firebase');
+    try {
+      if (db) {
+        await setDoc(doc(db, "bounties", uuid), {
+          id: uuid,
+          title,
+          description,
+          prizeAmount,
+          startDate,
+          endDate,
+          exampleImages: files,
+          postedBy: fundTxnReceipt.from,
+        });
+      } else { console.log('error no db') }
+    } catch (error) {
+      console.log('error uploading to firebase', error);
+    }
 
     // await sleep(1000);
     console.log('finished submtting');
     setLoading(false);
+    navigate(`/challenge/${uuid}`);
+    toast({
+      title: 'Challenge Created.',
+      description: "You challenge has been created successfully!",
+      status: 'success',
+      duration: 9000,
+      isClosable: true,
+    })
   };
 
   // const from = "0x04E7831739bA350b17E36541148368f8541552d6";
