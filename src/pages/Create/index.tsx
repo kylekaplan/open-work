@@ -290,9 +290,7 @@ const Create = () => {
       padding={{ base: "30px 5px", md: "30px 40px", lg: "30px 60px", xl: "30px 80px" }}
       maxWidth="1600px"
     >
-      <Heading as="h1" size="xl">
-        Create a Challenge
-      </Heading>
+      <h2>Create Meme Bounty</h2>
       <VStack spacing={8}>
         <FormControl mt={45} isRequired isInvalid={titleInvalid}>
           <FormLabel>Title:</FormLabel>
@@ -317,10 +315,10 @@ const Create = () => {
           />
         </FormControl>
 
-        <FormControl>
+        {/* <FormControl>
           <FormLabel>Good Example images:</FormLabel>
           <Uploader handleChangeStatus={handleChangeStatus} />
-        </FormControl>
+        </FormControl> */}
 
         <Grid
           gap={10}
@@ -395,7 +393,7 @@ const Create = () => {
           type='submit'
           onClick={handleSubmit}
         >
-          Create Challenge
+          Create Bounty
         </Button>
 
       </VStack>

@@ -1,0 +1,150 @@
+/* @import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,wght@0,900;1,900&display=swap');
+@font-face {
+  font-family: 'Nunito';
+  src: local('Nunitio'), url(../public/Nunito_Sans/NunitoSans-ExtraBold.ttf) format('truetype');
+} */
+:root {
+  --color-gold: #bc9531;
+  --color-gold-light: #E0D5D5;
+  --color-gold-dark: #514C48;
+}
+body,
+body[data-theme="light"] {
+  --color-text-primary: #27201a;
+  --color-text-secondary: #000;
+  --color-bg-primary: #EAE9E9;
+  --color-bg-toggle: var(--color-gold); 
+  --color-bg-secondary: var(--color-gold-light);
+}
+
+body[data-theme="dark"] {
+  --color-text-primary: #e3e3e3;
+  --color-text-secondary: #EAE9E9;
+  --color-bg-primary: #333;
+  --color-bg-toggle: #999; 
+  --color-bg-secondary: var(--color-gold-dark);
+}
+
+body {
+  background: var(--color-bg-primary);
+  color: var(--color-text-primary);
+  margin: 0;
+  padding: 0;
+  font-family: "Lorea";
+}
+
+/* Layout stuff */
+main{
+  display: grid;
+  margin-bottom: 20px;
+  grid-template-columns:
+    [full-start] minmax(1em, 1fr)
+    [main-start] minmax(0, 40em) [main-end] minmax(1em, 1fr)
+    [full-end];
+}
+
+main> * {
+  grid-column: main;
+}
+.mainGrid {
+  display: grid;
+  grid-template-columns:
+    [full-start] minmax(1em, 1fr)
+    [main-start] minmax(0, 40em) [main-end] minmax(1em, 1fr)
+    [full-end];
+}
+
+.mainGrid > * {
+  grid-column: main;
+}
+
+hr {
+  clear: both;
+  border: 1px dashed var(--color-gold);
+  display: block;
+}
+/* End layout */
+
+header {
+  grid-column: main;
+  text-align: center;
+  font-family: 'Nunito Sans', sans-serif;
+  color: var(--color-text-secondary);
+  line-height: 1;
+  font-size: 94px;
+  transition-property: font-size;
+  transition-duration: .4s;
+  letter-spacing: 0em;
+  border-bottom: 1px solid #96741D;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-style: italic;
+  font-weight: normal;
+  letter-spacing: 1.4px;
+  color: var(--color-text-secondary);
+}
+
+h2 {
+  position: sticky;
+  top: 0;
+  padding: 18px 0;
+  font-size: 32px;
+  text-align: center;
+  background: var(--color-bg-primary);
+  color: var(--color-text-primary);
+  z-index: 1000;
+}
+
+h2 {
+  margin-top: -34px;
+}
+
+ul {
+  margin: 6px;
+  padding: 0;
+}
+li {
+  list-style: none;
+}
+
+p {
+  font-size: 14px;
+  font-weight: normal;
+  line-height: 1.5;
+  color: var(--color-text-primary);
+  letter-spacing: 0.8px;
+  margin: 0;
+}
+
+a {
+  text-decoration: none;
+  color: var(--color-text-secondary);
+}
+
+#sunshine {
+  animation: shine 1s ease, shinon 1s;
+  animation-iteration-count: 1;
+  transform-origin: center;
+  transform-box: fill-box;
+}
+
+@keyframes shine {
+  from {
+    transform: rotateZ(0def);
+    transform: opacity(1);
+  } to {
+    transform: rotateZ(60deg);
+    transform: opacity(0);
+  }
+}
+
+@keyframes shinon {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+#active {
+  background-color: red;
+  border: 3px solid pink;
+}
