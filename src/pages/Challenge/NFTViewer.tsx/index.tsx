@@ -14,6 +14,7 @@ const NFTViewer = ({
   endDate,
   prizeAmount,
 }: NFTViewerProps) => {
+  console.log('in NFTViewer prizeAmo  ', prizeAmount);
   return (
     <DarkMode>
       <Box height="100%" bg="black" p={4}>

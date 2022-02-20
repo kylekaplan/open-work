@@ -14,12 +14,12 @@ import client from '../../services/ethers/client';
 // // Array of all supported tokens
 // import polygonMainnetTokens from '../../constants/polygon-mainnet-tokens.json';
 import mumbaiTokens from '../../constants/polygon-mumbai-tokens.json';
-// import localTokens from '../../constants/local-tokens.json';
+import localTokens from '../../constants/local-tokens.json';
 
 // // Mapping of tokens with token metadata for token address lookup
 // import polygonMainnetTokenMetadata from '../../constants/polygon-mainnet.json';
 import mumbaiTokenMetadata from '../../constants/polygon-mumbai.json';
-// import localTokenMetadata from '../../constants/local.json';
+import localTokenMetadata from '../../constants/local.json';
 
 require('dotenv').config({path: '../../../.env'});
 
@@ -27,18 +27,19 @@ console.log('process:', process);
 console.log('process.env.DEPLOY_ENV:', process.env.DEPLOY_ENV);
 // process.env.DEPLOY_ENV = 'development';
 let InitialState = {};
-switch ('development') { // process.env.DEPLOY_ENV
-// case 'local':
-// 	InitialState = {
-// 		tokenMetadata: localTokenMetadata,
-// 		tokens: localTokens,
-// 		client: new Mockclient(),
-// 		githubRepository: new MockGithubRepository(),
-// 		openQSubgraphClient: new MockOpenQSubgraphClient(),
-// 		tokenClient: new MockTokenClient(),
-// 		utils: new Utils(),
-// 	};
-// 	break;
+let enviro = 'local';
+switch (enviro) { // process.env.DEPLOY_ENV
+case 'local':
+	InitialState = {
+		tokenMetadata: localTokenMetadata,
+		tokens: localTokens,
+		client: new client(),
+		// githubRepository: new MockGithubRepository(),
+		// openQSubgraphClient: new MockOpenQSubgraphClient(),
+		// tokenClient: new MockTokenClient(),
+		// utils: new Utils(),
+	};
+	break;
 // case 'docker':
 // 	InitialState = {
 // 		tokenMetadata: localTokenMetadata,

@@ -56,7 +56,7 @@ const TopFold = ({
             fontWeight="bold"
             fontFamily="'Work Sans', sans-serif;"
           >
-            Create an original Ultra Sound Money meme.
+            {title}
           </Heading>
           {/* NFT Viewer on small screens */}
           <Box width="100%" display={{ base: 'block', md: 'none' }}>
@@ -72,7 +72,7 @@ const TopFold = ({
             fontSize="md"
             fontFamily="'Poppins', sans-serif"
           >
-            By: <Text as="span" sx={useStyleConfig('Text', { variant: 'teal' })}>kylekaplan.eth</Text>
+            By: <Text as="span" sx={useStyleConfig('Text', { variant: 'teal' })}>{postedBy}</Text>
           </Text>
         </VStack>
         <BorderedBox
@@ -96,7 +96,7 @@ const TopFold = ({
             </Text>
             <HStack fontSize="30px">
               <FaEthereum />
-              <Text>0.01</Text>
+              <Text>{prizeAmount}</Text>
             </HStack>
             <ConnectWalletButton />
           </Box>

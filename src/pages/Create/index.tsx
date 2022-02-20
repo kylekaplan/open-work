@@ -39,7 +39,7 @@ const Create = () => {
   const [endDate, setEndDate] = useState<Date | null>(null);
   const [title, setTitle] = useState<string>('');
   const [description, setDescription] = useState<string>('');
-  const [prizeAmount, setPrizeAmount] = useState<string>('0');
+  const [prizeAmount, setPrizeAmount] = useState<string>('');
   const [loading, setLoading] = useState<boolean>(false);
   const [files, setFiles] = useState<any>([]);
 
@@ -70,7 +70,8 @@ const Create = () => {
     console.log('bountyAddress:', bountyAddress);
     // setIsLoading(true);
     console.log('parseFloat(prizeAmount):', parseFloat(prizeAmount));
-    const volumeInWei = parseFloat(prizeAmount) * 10 ** token.decimals;
+    console.log('token:', token);
+    const volumeInWei = +prizeAmount * 10 ** token.decimals;
 
     if (volumeInWei == 0) {
       // setError({ title: 'Zero Volume Sent', message: 'Must send a greater than 0 volume of tokens.' });
@@ -79,6 +80,7 @@ const Create = () => {
     }
 
     const bigNumberVolumeInWei = ethers.BigNumber.from(volumeInWei.toString());
+    console.log('bigNumberVolumeInWei:', bigNumberVolumeInWei);
 
     let approveSucceeded = false;
 
@@ -139,7 +141,7 @@ const Create = () => {
         );
         console.log('fundTxnReceipt:', fundTxnReceipt);
         setTransactionHash(fundTxnReceipt.transactionHash);
-        console.log(`Successfully funded issue ${bountyAddress} with ${parseFloat(prizeAmount)} ${token.symbol}!`);
+        console.log(`Successfully funded issue ${bountyAddress} with ${prizeAmount} ${token.symbol}!`);
         // setSuccessMessage(
         // 	`Successfully funded issue ${bountyAddress} with ${volume} ${token.symbol}!`
         // );
@@ -249,7 +251,7 @@ const Create = () => {
           id: uuid,
           title,
           description,
-          prizeAmount,
+          prizeAmount: { amount: parseInt(prizeAmount), contract: token.address },
           startDate,
           endDate,
           exampleImages: files,
