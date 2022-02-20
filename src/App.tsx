@@ -22,6 +22,7 @@ import Challenge from "./pages/Challenge";
 import Home from "./pages/Home"
 import NotFound from "./pages/NotFound";
 import Create from './pages/Create';
+import BountyList from './pages/Bountys';
 
 
 const colors = {
@@ -115,6 +116,7 @@ export const App = () => (
           </Flex>
           <Routes>
             <Route path="/" element={<Home/>}/>
+            <Route path="/bountys" element={<BountyList />}/>
             <Route path="/challenge/:id" element={<Challenge />}/>
             <Route path="/create" element={<Create />}/>
             <Route path="*" element={<NotFound/>}/>
