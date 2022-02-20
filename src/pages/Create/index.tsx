@@ -240,8 +240,10 @@ const Create = () => {
       setStartDateInvalid(true);
     }
     console.log('files', files);
+    console.log(`endDate ${endDate}`)
     // TODO: wrap mint bounty in try/catch
     const bountyAddress = await mintBounty(uuid);
+    console.log('bountyAddress:', bountyAddress)
     const fundTxnReceipt = await fundBounty(bountyAddress);
     // upload to firebase
     console.log('uploading to firebase');

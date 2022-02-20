@@ -13,7 +13,7 @@ const Home = () => {
         <h1>MemeIt</h1>
 
       <h3>
-        The meme to earn protocal.
+        The Meme-to-Earn Protocal.
       </h3>
       
       <div>
@@ -29,7 +29,9 @@ const Home = () => {
 
       <h3>What is MemeIt</h3>
 
-      <p>You know that feeling you get in the back of your head? The one that you know needs to get out. Let Meme Hunters put the Interwebs meme army on it.</p>
+      <p>MemeIt is a Web3 Protocol that allows you to create bounties for memes and compete to earn crypto by creating memes. </p>
+
+      {/* <p>You know that idea you get in the back of your head? The one that you know needs to get out. Let MemeIt the Interwebs meme army on it.</p> */}
 
       <Image
         src={showMemes}
@@ -37,14 +39,14 @@ const Home = () => {
         width={{ base: 290, sm: 290, md: 290, lg: 333, xl: 333 }}
       />
 
-      <p>That’s right friends, in a timeline you specify, simply state your prize amount and a few sentences on what you want meme’d and let the hunt begin.</p>
-      <p>Or if you fancy yourself a meme master then for just the price of gas you can submit one or more of your own meme masterpeices to one of the open bountys and may the best meme win.</p>
+      {/* <p>That’s right friends, in a timeline you specify, simply state your prize amount and a few sentences on what you want memed and let the hunt begin.</p> */}
+      {/* <p>Or if you fancy yourself a meme master then for just the price of gas you can submit one or more of your own meme masterpeices to one of the open bountys and may the best meme win.</p> */}
       
-      <Image
-        src={muchWow}
-        alt="Doge meme"
-        width={{ base: 290, sm: 290, md: 290, lg: 333, xl: 333 }}
-      />
+      {/* <Image */}
+        {/* src={muchWow} */}
+        {/* alt="Doge meme" */}
+        {/* width={{ base: 290, sm: 290, md: 290, lg: 333, xl: 333 }} */}
+      {/* /> */}
       <footer>
         <ThemeToggle />
       </footer>

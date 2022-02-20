@@ -2,7 +2,6 @@ import { useParams } from 'react-router-dom';
 import { doc, getDoc } from "firebase/firestore";
 import './challenge.css';
 import Uploader from './Uploader';
-import Description from './Accordions/Description';
 import TopFold from './TopFolder';
 import DisplaySubmissions from '../../organsims/DisplaySubmissions';
 import { useEffect, useState } from 'react';
