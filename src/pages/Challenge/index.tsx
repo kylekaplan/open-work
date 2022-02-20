@@ -76,12 +76,14 @@ const Challenge = ({}: ChallengeProps) => {
         prizeAmount={prizeAmount.amount}
       />
       <MyDivider />
-      <Description description={description} />
+      {description && <Description description={description} />}
       <MyDivider />
       {examplesImages && (
-        <ExampleImages imgs={examplesImages} />
+        <>
+          <ExampleImages imgs={examplesImages} />
+          <Box height={{ base: 10, md: 30, lg: 75 }} />
+        </>
       )}
-      <Box height={{ base: 10, md: 30, lg: 75 }} />
       <Uploader />
       <MyDivider />
       <DisplaySubmissions />

@@ -107,7 +107,7 @@ const DisplaySubmissions = () => {
   return (
     <Box>
       <AccordionDataDisplay title="Open Source Memes:">
-        {!fireData && !loading && <p>No data</p>}
+        {!loading && fireData.length === 0 && <p>No submittions yet. Be the first!</p>}
         {!loading && fireData
           ? (
             <Wrap spacing={5} mt={3} mb={3}>
