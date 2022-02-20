@@ -45,15 +45,6 @@ const TopFold = ({
   return (
     <Flex>
       {/* NFT Viewer on large screens */}
-      <Box display={{ base: 'none', md: 'block' }}>
-        <NFTViewer
-          title={title}
-          postedBy={postedBy}
-          startDate={startDate}
-          endDate={endDate}
-          prizeAmount={prizeAmount}
-        />
-      </Box>
       <Box ml={{ base: 0, md: 30 }}>
         <VStack align="start" spacing={5}>
           <Heading
@@ -63,16 +54,6 @@ const TopFold = ({
           >
             {title}
           </Heading>
-          {/* NFT Viewer on small screens */}
-          <Box width="100%" display={{ base: 'block', md: 'none' }}>
-            <NFTViewer
-              title={title}
-              postedBy={postedBy}
-              startDate={startDate}
-              endDate={endDate}
-              prizeAmount={prizeAmount}
-            />
-          </Box>
           <Text
             fontSize="md"
             fontFamily="'Poppins', sans-serif"

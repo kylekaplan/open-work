@@ -12,10 +12,6 @@ import { useEffect, useState } from 'react';
 import { useDb } from '../../hooks/useFirebase';
 
 
-const MyDivider = () => (
-  <Box height={30} />
-);
-
 interface ChallengeProps {};
 const Challenge = ({}: ChallengeProps) => {
   const db = useDb();
@@ -65,11 +61,7 @@ const Challenge = ({}: ChallengeProps) => {
   } = fireData;
   console.log('postedBy:', postedBy);
   return (
-    <Box
-      m="0 auto"
-      padding={{ base: "30px 5px", md: "30px 40px", lg: "30px 60px", xl: "30px 80px" }}
-      maxWidth="1600px"
-    >
+    <div className="mainGrid">
       <TopFold
         id={id}
         title={title}
@@ -79,20 +71,9 @@ const Challenge = ({}: ChallengeProps) => {
         prizeAmount={prizeAmount.amount}
         isWinnerSelected={winner}
       />
-      <MyDivider />
       {description && <Description description={description} />}
-      <MyDivider />
-      {examplesImages && (
-        <>
-          <ExampleImages imgs={examplesImages} />
-          <Box height={{ base: 10, md: 30, lg: 75 }} />
-        </>
-      )}
       <Uploader bountyId={id} refreshData={getData} setLoading={setLoadingSubmission} />
-      <MyDivider />
-      {!loadingSubmission && <DisplaySubmissions />}
-      <Footer />
-    </Box>
+    </div>
   );
 }
 

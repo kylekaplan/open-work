@@ -18,8 +18,12 @@ const Home = () => {
       </h3>
       
       <div>
-        <Link to="/create">New Bounty</Link>
-        <Link to="/bountys">Open Bountys</Link>
+        <button>
+          <Link to="/create">New Bounty</Link>
+        </button>
+        <button>
+          <Link to="/bountys">Open Bountys</Link>
+        </button>
       </div>
 
 
