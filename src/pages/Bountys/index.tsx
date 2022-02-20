@@ -15,22 +15,25 @@ interface BountyListProps {};
 const BountyList = ({}: BountyListProps) => {
  
   return (
-    <Box
-      m="0 auto"
-      padding={{ base: "30px 5px", md: "30px 40px", lg: "30px 60px", xl: "30px 80px" }}
-      maxWidth="1600px"
-    >
+    <div className="mainGrid">
         <h3>Open Bounty's</h3>
       <ul>
           <li>
             <Link to="/challenge/OVyNZQZY8WqDKF7bdP6Z">
-              Bounty One
+              Ultra Sound Money meme
             </Link>
+            <time>Tuesday Feb. 22</time>
           </li>
-          <li>Bounty two</li>
-          <li>Bounty three</li>
+          <li>
+            Regenerative Finance
+            <time>Wednesday Feb. 23</time>
+          </li>
+          <li>
+            Coin Mazie's
+            <time>Friday Feb. 24</time>
+          </li>
       </ul>
-    </Box>
+    </div>
   );
 }
 

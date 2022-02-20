@@ -85,6 +85,11 @@ h1, h2, h3, h4, h5, h6 {
   color: var(--color-text-secondary);
 }
 
+h1 {
+  text-align: center;
+  font-size: 60px;
+}
+
 h2 {
   position: sticky;
   top: 0;
@@ -101,11 +106,12 @@ h2 {
 }
 
 ul {
-  margin: 6px;
   padding: 0;
 }
 li {
+  padding: 20px;
   list-style: none;
+  border-bottom: 2px solid black;
 }
 
 p {
@@ -114,7 +120,7 @@ p {
   line-height: 1.5;
   color: var(--color-text-primary);
   letter-spacing: 0.8px;
-  margin: 0;
+  margin: 10px 0;
 }
 
 a {
@@ -151,4 +157,20 @@ a {
 textarea {
     width: 600px;
     height: 200px;
+}
+
+footer {
+  margin: 40px 0;
+  display: flex;
+  -moz-box-pack: center;
+  justify-content: center;
+}
+
+time {
+  float: right;
+}
+button {
+  margin: 40px;
+  padding: 20px 40px;
+  font-size: 20px;
 }
