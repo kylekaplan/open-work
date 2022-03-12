@@ -16,6 +16,8 @@ import NotFound from "./pages/NotFound";
 import Create from './pages/Create';
 import BountyList from './pages/Bountys';
 import SelectWinner from './pages/SelectWinner';
+import ThemeToggle from "./organsims/Theme_toggle";
+import { Flex } from '@chakra-ui/react';
 
 
 // Your web app's Firebase configuration
@@ -33,7 +35,13 @@ const app = initializeApp(firebaseConfig);
 
 export const App = () => (
   <StoreProvider>
-    <Router basename="/open-work" >
+    <Flex className='toolBar'>
+      <button className="homeBtn">MEMEiT</button>
+      <button>Network</button>
+      <button>Connect Wallet</button>
+      <ThemeToggle />
+    </Flex>
+    <Router basename="/memeit" >
       <Routes>
         <Route path="/" element={<Home/>}/>
         <Route path="/bountys" element={<BountyList />}/>

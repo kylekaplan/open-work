@@ -4,53 +4,67 @@ import { Image } from "@chakra-ui/react";
 import { Link } from 'react-router-dom';
 import muchWow from '../../assets/images/much_wow.png';
 import showMemes from '../../assets/images/show_me_memes.jpeg';
+import styled from '@emotion/styled'
+
+const BountyButton = (props: any) => {
+  const Button = styled.button`
+    color: turquoise;
+    background-image: url(${showMemes});
+    height: 200px;
+    border: 1px dashed blue;
+  `
+  return (
+    <Link to={("/" + props.goto)}>
+      <Button type="button">
+        { props.text }
+      </Button>
+    </Link>
+  )
+};
 
 const Home = () => {
 
   return (
-    <div className="mainGrid">
+    <main>
       
-        <h1>MemeIt</h1>
+      <h1>MEMEiT</h1>
 
-      <h3>
-        The Meme-to-Earn Protocal.
-      </h3>
+      <h2>The Meme-to-Earn Protocal</h2>
       
-      <div>
-        
-        <button>
-          <Link to="/create">New Bounty</Link>
-        </button>
-        <button>
-          <Link to="/bountys">Open Bountys</Link>
-        </button>
+      <div className="splitter">
+        <div className="bigBtn">
+          <img src={showMemes}/>
+          <a href="/create">Create Bounty</a>
+        </div>
+          <p className="decider">- OR -</p>
+        <div className="bigBtn">
+          <img src={showMemes}/>
+          <a href="/bountys">View Bountys</a>
+        </div>
       </div>
 
 
       <h3>What is MemeIt</h3>
+      <p>
+        Memeit is a market place for memes. Whether you need a meme or are looking to make some of that ultra-sound meme money, Memeit is your one stop to take your meme game to a whole notha level. Built on the Polygon decentralized blah blah blah...
+      </p>
 
-      <p>MemeIt is a Web3 Protocol that allows you to create bounties for memes and compete to earn crypto by creating memes. </p>
+      <h4>What there saying about MEMEiT</h4>
 
-      {/* <p>You know that idea you get in the back of your head? The one that you know needs to get out. Let MemeIt the Interwebs meme army on it.</p> */}
-
-      <Image
-        src={showMemes}
-        alt="Doge meme"
-        width={{ base: 290, sm: 290, md: 290, lg: 333, xl: 333 }}
-      />
-
-      {/* <p>That’s right friends, in a timeline you specify, simply state your prize amount and a few sentences on what you want memed and let the hunt begin.</p> */}
-      {/* <p>Or if you fancy yourself a meme master then for just the price of gas you can submit one or more of your own meme masterpeices to one of the open bountys and may the best meme win.</p> */}
-      
-      {/* <Image */}
-        {/* src={muchWow} */}
-        {/* alt="Doge meme" */}
-        {/* width={{ base: 290, sm: 290, md: 290, lg: 333, xl: 333 }} */}
-      {/* /> */}
+      <div className="splitter">
+        <button>
+          Create Bounty
+        </button>
+        <button>
+          View Bountys
+        </button>
+      </div>
       <footer>
-        <ThemeToggle />
+        MemeIt is developed by Such Cool, Much Wow Productions & runs on the Poylgon Network to find out more about the project please see the Github repo or find us on Twitter Blah blah blah ...
+        @MemeIt
+        memeit.eth
       </footer>
-    </div>
+    </main>
   );
 }
 

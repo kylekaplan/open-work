@@ -41,7 +41,7 @@ const ThemeToggle = () => {
     width: 1rem;
     height: 1rem;
     margin-top: 12px;
-    margin-left: 1px;
+    margin-left: 12px;
     background: var(--color-gold);
     box-shadow: 0 0 10px #ccc, inset 4px 0 0 var( --color-bg-primary);
     outline: 4px solid khaki;
