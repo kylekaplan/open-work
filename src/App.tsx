@@ -41,7 +41,7 @@ export const App = () => (
       <button>Connect Wallet</button>
       <ThemeToggle />
     </Flex>
-    <Router basename="/memeit" >
+    <Router basename="/" >
       <Routes>
         <Route path="/" element={<Home/>}/>
         <Route path="/bountys" element={<BountyList />}/>
