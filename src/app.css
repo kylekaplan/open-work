@@ -260,6 +260,9 @@ button:active {
   text-align: center;
   margin: 40px 0;
 }
+.centerer img {
+  width: 60%;
+}
 
 desc {
   background-color: white;
@@ -325,4 +328,13 @@ desc p {
   -moz-box-shadow:    1px 1px 1px 1px rgba(0,0,0,0.2);
   -webkit-box-shadow: 1px 1px 1px 1px rgba(0,0,0,0.2);
   box-shadow:         1px 1px 1px 1px rgba(0,0,0,0.2);
+}
+
+@media only screen and (max-width: 600px) {
+  h1 {
+    font-size: 4rem;
+  }
+  .centerer img {
+    width: 80%;
+  }
 }
