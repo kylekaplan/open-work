@@ -2,14 +2,15 @@ import { useEffect } from 'react';
 import ThemeToggle from "../../organsims/Theme_toggle";
 import { Image } from "@chakra-ui/react";
 import { Link } from 'react-router-dom';
-import muchWow from '../../assets/images/much_wow.png';
-import showMemes from '../../assets/images/show_me_memes.jpeg';
-import styled from '@emotion/styled'
+import muchWow from '../../assets/shiba_quote.png';
+import showMeMemes from '../../assets/show_me_memes.jpg';
+import meme2earn from '../../assets/meme2earn.jpg';
+import memeOrnot from '../../assets/meme_or_not.jpg';
+import styled from '@emotion/styled';
 
 const BountyButton = (props: any) => {
   const Button = styled.button`
-    color: turquoise;
-    background-image: url(${showMemes});
+    background-image: url(${showMeMemes});
     height: 200px;
     border: 1px dashed blue;
   `
@@ -33,12 +34,12 @@ const Home = () => {
       
       <div className="splitter">
         <div className="bigBtn">
-          <img src={showMemes}/>
+          <img src={showMeMemes}/>
           <a href="/create">Create Bounty</a>
         </div>
           <p className="decider">- OR -</p>
         <div className="bigBtn">
-          <img src={showMemes}/>
+          <img src={meme2earn}/>
           <a href="/bountys">View Bountys</a>
         </div>
       </div>
@@ -49,15 +50,35 @@ const Home = () => {
         Memeit is a market place for memes. Whether you need a meme or are looking to make some of that ultra-sound meme money, Memeit is your one stop to take your meme game to a whole notha level. Built on the Polygon decentralized blah blah blah...
       </p>
 
-      <h4>What there saying about MEMEiT</h4>
+      <div className='centerer'>
+        <desc>
+          <img src={memeOrnot}/>
+          <p>
+            MEME: An idea, behavior, or style that spreads by means of imitation from person to person within a culture and often carries symbolic meaning representing a particular phenomenon or theme.[4] A meme acts as a unit for carrying cultural ideas, symbols, or practices, that can be transmitted from one mind to another through writing, speech, gestures, rituals, or other imitable phenomena with a mimicked theme.
+          </p>
 
+          <a href="https://en.wikipedia.org/wiki/Meme">-- Wikipidia</a>
+        </desc>
+      </div>
+
+      <h4>What there saying about MEMEiT</h4>
+      <div className='centerer'>
+        <img src={muchWow} />
+      </div>
+
+      <h4>Let's do this!</h4>
       <div className="splitter">
-        <button>
-          Create Bounty
-        </button>
-        <button>
-          View Bountys
-        </button>
+        <a href="/create">
+          <button>
+              Create Bounty
+          </button>
+        </a> 
+          <p className="decider">- OR -</p>
+        <a href="/bountys">
+          <button>
+            View Bountys
+          </button>
+        </a>
       </div>
       <footer>
         MemeIt is developed by Such Cool, Much Wow Productions & runs on the Poylgon Network to find out more about the project please see the Github repo or find us on Twitter Blah blah blah ...

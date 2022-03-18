@@ -11,15 +11,25 @@ import "react-datepicker/dist/react-datepicker.css";
 import './app.css';
 import StoreProvider from './store/Store/StoreProvider';
 import Challenge from "./pages/Challenge";
-import Home from "./pages/Home"
+import Home from "./pages/Home";
 import NotFound from "./pages/NotFound";
 import Create from './pages/Create';
 import BountyList from './pages/Bountys';
 import SelectWinner from './pages/SelectWinner';
 import ThemeToggle from "./organsims/Theme_toggle";
 import { Flex } from '@chakra-ui/react';
+import { Link } from 'react-router-dom';
+import styled from '@emotion/styled';
+import memeit from './assets/dogey.png';
 
-
+const NavLink = styled.a`
+  background-image: url(${memeit});
+  height: 50px;
+  border-radius: 50%;
+  margin: 20px;
+  font-family: Nunito;
+`;
+  
 // Your web app's Firebase configuration
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_FIREBASE_APIKEY,
@@ -36,7 +46,7 @@ const app = initializeApp(firebaseConfig);
 export const App = () => (
   <StoreProvider>
     <Flex className='toolBar'>
-      <button className="homeBtn">MEMEiT</button>
+      <NavLink href="/" className="homeBtn">MEMEiT</NavLink>
       <button>Network</button>
       <button>Connect Wallet</button>
       <ThemeToggle />

@@ -117,10 +117,6 @@ header {
   box-shadow:         inset 0 0 6px black;
 }
 
-.homeBtn {
-  align-self: flex-start;
-}
-
 ul {
   padding: 0;
 }
@@ -256,6 +252,24 @@ button:active {
   padding: 0;
 }
 
+.centerer {
+  text-align: center;
+  margin: 40px 0;
+}
+
+desc {
+  background-color: white;
+  padding: 20px;
+  height: 100%;
+  display: inline-block;
+  display: flex;
+  flex-direction: column;
+}
+
+desc p {
+  text-align: left;
+}
+
 .splitter {
   display: flex;
   align-items: center;
@@ -286,7 +300,6 @@ button:active {
   font-size: 1.6rem; 
   display: block;
   text-decoration: none;
-  text-transform: uppercase;
   padding-top: 4px;
 }
 .bigBtn a:hover {

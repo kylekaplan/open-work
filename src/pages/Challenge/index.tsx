@@ -55,7 +55,7 @@ const Challenge = ({}: ChallengeProps) => {
   } = fireData;
   console.log('postedBy:', postedBy);
   return (
-    <div className="mainGrid">
+    <main>
       <TopFold
         id={id}
         title={title}
@@ -68,7 +68,7 @@ const Challenge = ({}: ChallengeProps) => {
       />
       <Uploader bountyId={id} refreshData={getData} setLoading={setLoadingSubmission} />
       {!loadingSubmission && <DisplaySubmissions />}
-    </div>
+    </main>
   );
 }
 
