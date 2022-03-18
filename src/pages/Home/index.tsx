@@ -6,6 +6,7 @@ import muchWow from '../../assets/shiba_quote.png';
 import showMeMemes from '../../assets/show_me_memes.jpg';
 import meme2earn from '../../assets/meme2earn.jpg';
 import memeOrnot from '../../assets/meme_or_not.jpg';
+import memeit from '../../assets/dogey.png';
 import styled from '@emotion/styled';
 
 const BountyButton = (props: any) => {
@@ -28,7 +29,7 @@ const Home = () => {
   return (
     <main>
       
-      <h1>MEMEiT</h1>
+      <h1>MEMEiT <img src={memeit} /></h1>
 
       <h2>The Meme-to-Earn Protocal</h2>
       
@@ -45,7 +46,7 @@ const Home = () => {
       </div>
 
 
-      <h3>What is MemeIt</h3>
+      <h4>MemeWho? Bounty what?</h4>
       <p>
         Memeit is a market place for memes. Whether you need a meme or are looking to make some of that ultra-sound meme money, Memeit is your one stop to take your meme game to a whole notha level. Built on the Polygon decentralized blah blah blah...
       </p>
@@ -61,12 +62,12 @@ const Home = () => {
         </desc>
       </div>
 
-      <h4>What there saying about MEMEiT</h4>
+      <h4>What there saying about MEMEiT!</h4>
       <div className='centerer'>
         <img src={muchWow} />
       </div>
 
-      <h4>Let's do this!</h4>
+      <h4>So, Let's do this!</h4>
       <div className="splitter">
         <a href="/create">
           <button>

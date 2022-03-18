@@ -22,12 +22,19 @@ import { Link } from 'react-router-dom';
 import styled from '@emotion/styled';
 import memeit from './assets/dogey.png';
 
-const NavLink = styled.a`
+const HmLink = styled.a`
   background-image: url(${memeit});
   height: 50px;
   border-radius: 50%;
   margin: 20px;
   font-family: Nunito;
+`;
+
+const NavLink = styled.a`
+  margin: 8px;
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: 1px solid grey;
 `;
   
 // Your web app's Firebase configuration
@@ -46,10 +53,12 @@ const app = initializeApp(firebaseConfig);
 export const App = () => (
   <StoreProvider>
     <Flex className='toolBar'>
-      <NavLink href="/" className="homeBtn">MEMEiT</NavLink>
-      <button>Network</button>
-      <button>Connect Wallet</button>
-      <ThemeToggle />
+      <HmLink href="/" className="homeBtn">MEMEiT</HmLink>
+      <div>
+        <NavLink>Network</NavLink>
+        <NavLink>Connect Wallet</NavLink>
+        <ThemeToggle />
+      </div>
     </Flex>
     <Router basename="/" >
       <Routes>
