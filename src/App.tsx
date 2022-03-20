@@ -15,11 +15,9 @@ import Home from "./pages/Home";
 import NotFound from "./pages/NotFound";
 import Create from './pages/Create';
 import BountyList from './pages/Bountys';
-import List from './pages/List';
 import SelectWinner from './pages/SelectWinner';
 import ThemeToggle from "./organsims/Theme_toggle";
 import { Flex } from '@chakra-ui/react';
-import { Link } from 'react-router-dom';
 import styled from '@emotion/styled';
 import memeit from './assets/dogey.png';
 
@@ -32,7 +30,7 @@ const HmLink = styled.a`
 `;
 
 const NavLink = styled.a`
-  margin: 8px;
+  margin-right: 20px;
   padding: 8px 12px;
   border-radius: 8px;
   border: 1px solid grey;
@@ -58,7 +56,7 @@ export const App = () => (
       <div>
         <NavLink>Network</NavLink>
         <NavLink>Connect Wallet</NavLink>
-        <ThemeToggle />
+        {/* <ThemeToggle /> */}
       </div>
     </Flex>
     <Router basename="/" >

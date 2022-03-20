@@ -9,22 +9,19 @@ import ReactTimeAgo from 'react-time-ago';
 import { useDb } from "../../hooks/useFirebase";
 import StoreContext from "../../store/Store/StoreContext";
 
-const Bounty = () => {
-  <Link to="/challenge/4abaec32-9828-447d-92ff-a3f05d13b3ae">
-    <div className='post'>
-      <div className='postHead'>OPEN</div>
-      <div className='posted'>Decentralized systems for public goods</div>
-      <div className='postFoot'>
-        foot
-      </div>
-      <div className='progSpace'>
-        <span className='progBar'>
-          <span className='progress' />
-        </span>
-      </div>
-    </div>
-  </Link>
-}
+interface Item {
+  id: number;
+  title: string;
+  startDate: Date;
+  endDate: Date;
+};
+
+const Bounty = (item: Item) => {
+  return (
+    <Link to={`/challenge/${item.id}`}>
+    </Link>
+  );
+};
 
 const BountyList = () => {
   const db = useDb();
@@ -68,30 +65,58 @@ const BountyList = () => {
     <main>
       <h3>- WANTED -</h3>
       <div className='container'>
-        {fireData.map((item: any) => (
-          <Link to={`/challenge/${item.id}`}>
-            <div className='post' key={item.id}>
-              <div className='postHead'>OPEN</div>
-              <div className='posted'>{item.title}</div>
-              <div className='postFoot'>
-                <h6>1.25 ETH<small>ETH</small></h6>
-                <div>
-                  <span>1 in 32 Odds</span>
-                  <span>{
-                      item.startDate && <ReactTimeAgo date={new Date(item.startDate?.seconds * 1000)} locale="en-US"/>
-                    }
+        {
+          fireData.slice(0, 8).map((item: any) => (
+            <Link to={`/challenge/${item.id}`}>
+              <div className='post' key={item.id}>
+                <div className='postHead'>OPEN</div>
+                <div className='posted'>{item.title}</div>
+                <div className='postFoot'>
+                  <h6>1.25 ETH<small>ETH</small></h6>
+                  <div>
+                    <span>1 in 32 Odds</span>
+                    <span>{
+                        item.startDate && <ReactTimeAgo date={new Date(item.startDate?.seconds * 1000)} locale="en-US"/>
+                      }
+                    </span>
+                  </div>   
+                </div>
+                <span className='progSpace'>
+                  <span className='progBar'>
+                    <span className='progress' />
                   </span>
-                </div>   
-              </div>
-              <span className='progSpace'>
-                <span className='progBar'>
-                  <span className='progress' />
                 </span>
-              </span>
+              </div>
+              Bounty Details
+            </Link>
+          ))
+        }
+
+        <Link to={`/challenge/close1`}>
+          <div className='post'>
+            <div className='postHead closed'>CLOSED</div>
+            <div className='posted'>Some closed title</div>
+            <div className='postFoot'>
+              <div>
+                <span>Won by: someone.eth</span>
+              </div>   
             </div>
-            Bounty Details
-          </Link>
-        ))}
+          </div>
+          Bounty Details
+        </Link>
+
+        <Link to={`/challenge/closed2`}>
+          <div className='post'>
+            <div className='postHead closed'>CLOSED</div>
+            <div className='posted'>close title 2</div>
+            <div className='postFoot'>
+              <div>
+                <span>Won by: someone.eth</span>
+              </div>   
+            </div>
+          </div>
+          Bounty Details
+        </Link>
       </div>
     </main>
   );
