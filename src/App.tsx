@@ -15,6 +15,7 @@ import Home from "./pages/Home";
 import NotFound from "./pages/NotFound";
 import Create from './pages/Create';
 import BountyList from './pages/Bountys';
+import List from './pages/List';
 import SelectWinner from './pages/SelectWinner';
 import ThemeToggle from "./organsims/Theme_toggle";
 import { Flex } from '@chakra-ui/react';
@@ -64,6 +65,7 @@ export const App = () => (
       <Routes>
         <Route path="/" element={<Home/>}/>
         <Route path="/bountys" element={<BountyList />}/>
+        {/* <Route path="/bountys" element={<List />}/> */}
         <Route path="/challenge/:id" element={<Challenge />}/>
         <Route path="/challenge/:id/select-winner" element={<SelectWinner />}/>
         <Route path="/create" element={<Create />}/>
