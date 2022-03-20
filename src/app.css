@@ -85,7 +85,7 @@ main {
   margin-bottom: 20px;
   grid-template-columns:
     [full-start] minmax(1em, 1fr)
-    [main-start] minmax(0, 50em) [main-end] minmax(1em, 1fr)
+    [main-start] minmax(0, 54em) [main-end] minmax(1em, 1fr)
     [full-end];
 }
 
@@ -120,15 +120,6 @@ header {
   -webkit-box-shadow: inset 0 0 6px black;
   box-shadow:         inset 0 0 6px black;
 } */
-
-ul {
-  padding: 0;
-}
-li {
-  padding: 20px;
-  list-style: none;
-  border-bottom: 2px solid black;
-}
 
 p {
   font-size: 1.2rem;
@@ -337,4 +328,100 @@ desc p {
   .centerer img {
     width: 80%;
   }
+}
+
+
+.container {
+  padding: 20px 0;
+  display: flex;
+  flex-wrap: wrap;
+  /* justify-content: space-between; */
+}
+
+.container a {
+  margin: 10px;
+  padding: 10px;
+  border-radius: 4px;
+}
+.container a:hover {
+  background-color: purple;
+}
+
+.post {
+  background-color: white;
+  padding: 0px;
+  border-radius: 4px;
+  font-family: Lobster;
+  display: grid;
+  width: 200px;
+  -moz-box-shadow:    0 0 6px black;
+  -webkit-box-shadow: 0 0 6px black;
+  box-shadow:         2px 2px 4px rgba(0,0,0,.4);
+  overflow: clip;
+  /* height: 240px; */
+  /* grid-gap: 10px; */
+  grid-template-columns: auto 12px;
+  /* grid-template-rows: 24px auto 12px; */
+  grid-template-areas: 
+    'banner progSpace'
+    'main progSpace'
+    'foot progSpace'; 
+}
+
+.post div {
+  padding: 6px 10px;
+}
+
+.postHead {
+  font-family: sans-serif;
+  grid-area: banner;
+  font-size: .8rem;
+  font-weight: 900;
+  color: green;
+}
+
+.posted {
+  grid-area: main;
+  font-size: 1.8rem;
+  line-height: 1.6rem;
+  color: #333;
+  height: 140px;
+}
+
+.postFoot {
+  font-family: sans-serif;
+  grid-area: foot;
+}
+.postFoot h6 {
+  margin: 0;
+  color: green;
+}
+.postFoot div {
+  font-size: .8rem;
+  color: #ccc;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  justify-content: space-between;
+}
+
+.progSpace {
+  display: block;
+  grid-area: progSpace;
+  background-color: pink;
+  width: 10px;
+}
+
+.progBar {
+  background-color: #ccc;
+  display: block;
+  width: 2px;
+  height: 100%;
+}
+
+.progress {
+  background-color: #555;;
+  display: block;
+  width: 2px;
+  height: 44%;
 }
