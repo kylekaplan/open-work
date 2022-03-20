@@ -252,7 +252,7 @@ button:active {
   margin: 40px 0;
 }
 .centerer img {
-  width: 60%;
+  /* width: 60%; */
 }
 
 desc {
@@ -261,6 +261,9 @@ desc {
   display: inline-block;
   display: flex;
   flex-direction: column;
+}
+
+desc img {
 }
 
 desc p {
@@ -332,7 +335,6 @@ desc p {
 
 
 .container {
-  padding: 20px 0;
   margin-left: -40px;
   margin-right: -40px;
   display: flex;
@@ -341,16 +343,22 @@ desc p {
 }
 
 .container a {
-  padding: 20px;
+  padding: 4px;
+  margin: 18px;
   border-radius: 4px;
+  text-align: center;
+  font-family: Lobster;
+  color: pink;
 }
 .container a:hover {
-  background-color: purple;
+  background-color: #BA7FD1;
+  color: yellow;
 }
 
 .post {
   background-color: white;
   padding: 0px;
+  margin-bottom: 6px;
   border-radius: 4px;
   font-family: Lobster;
   display: grid;
@@ -368,6 +376,7 @@ desc p {
 
 .post div {
   padding: 6px 12px;
+  text-align: left;
 }
 
 .postHead {

@@ -89,6 +89,7 @@ const BountyList = () => {
                 </span>
               </span>
             </div>
+            Bounty Details
           </Link>
         ))}
       </div>
