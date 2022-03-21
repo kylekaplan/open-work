@@ -287,9 +287,8 @@ const Create = () => {
   // console.log('realAddress:', realAddress);
 
   return (
-    <div className="mainGrid">
-      <h2>Create Meme Bounty</h2>
-      <VStack spacing={8}>
+    <main className='createStuff'>
+      <h3>- CREATE BOUNTY -</h3>
         <FormControl mt={45} isRequired isInvalid={titleInvalid}>
           <FormLabel>Title:</FormLabel>
           <Input
@@ -386,9 +385,7 @@ const Create = () => {
         >
           Create Bounty
         </Button>
-
-      </VStack>
-    </div>
+    </main>
   )
 };
 

@@ -73,6 +73,7 @@ h3, h4 {
 }
 h3 {
   font-size: 3.6rem;
+  margin-top: -40px;
 }
 
 h4 {
@@ -253,6 +254,17 @@ button:active {
   color: var(--color-main);
   text-shadow: 4px 4px 4px rgba(0,0,0,0.4);
   font-size: 2rem;
+}
+
+.createStuff * {
+  margin-bottom: 6px;
+}
+
+.chakra-form__label {
+  font-family: Lobster;
+  font-size: 2rem;
+  color: #ECDBF3;
+  text-shadow: -1px -1px 0 rgba(0,0,0,0.6);
 }
 
 .descriptor {
@@ -528,6 +540,8 @@ desc p {
 .posterPerson {
   text-align: right;
   color: #333;
+  margin-top: -10px;
+  margin-bottom: 40px;
 }
 
 .bountyBox {
