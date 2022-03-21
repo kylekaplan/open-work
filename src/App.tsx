@@ -23,17 +23,23 @@ import memeit from './assets/dogey.png';
 
 const HmLink = styled.a`
   background-image: url(${memeit});
-  height: 50px;
+  height: 60px;
   border-radius: 50%;
+  border: 2px solid #288BE5;
   margin: 20px;
-  font-family: Nunito;
+  font-family: Rubik;
+  color: #333;
+  font-weight: 900;
+  // line-height: 8rem;
 `;
 
 const NavLink = styled.a`
   margin-right: 20px;
   padding: 8px 12px;
   border-radius: 8px;
-  border: 1px solid grey;
+  border: 1px solid #288BE5;
+  font-family: Lobster;
+  color: #288BE5;
 `;
   
 // Your web app's Firebase configuration

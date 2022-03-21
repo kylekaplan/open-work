@@ -4,21 +4,39 @@ import { Box } from '@chakra-ui/react';
 // import { useDb } from '../../hooks/useFirebase';
 import { useContext, useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import { doc, updateDoc, getDocs, collection, query } from "firebase/firestore";
+import { getDocs, collection, query } from "firebase/firestore";
 import ReactTimeAgo from 'react-time-ago';
 import { useDb } from "../../hooks/useFirebase";
 import StoreContext from "../../store/Store/StoreContext";
+import showMeMemes from '../../assets/show_me_memes.jpg';
+import meme2earn from '../../assets/meme2earn.jpg';
 
-interface Item {
-  id: number;
+type Item = {
   title: string;
-  startDate: Date;
-  endDate: Date;
+  endDate: string;
+  winner: string;
+  amt: string;
+  image: string;
 };
 
-const Bounty = (item: Item) => {
+const Bounty = ({ title, endDate, winner, amt, image }: Item) => {
   return (
-    <Link to={`/challenge/${item.id}`}>
+    <Link to={`/challenge/closed2`}>
+      <div className='post'>
+        <div className='postHead closed'>CLOSED</div>
+        <div className='postedClosed'>
+          {title}
+          <img src={image} />
+        </div>
+        <div className='postFoot'>
+          <p className='postFootClosed'>
+            {winner}<br />
+            {amt}<br />
+            {endDate}
+          </p>
+        </div>
+      </div>
+      Bounty Details
     </Link>
   );
 };
@@ -63,10 +81,10 @@ const BountyList = () => {
 
   return (
     <main>
-      <h3>- WANTED -</h3>
+      <h3>- Bountys -</h3>
       <div className='container'>
         {
-          fireData.slice(0, 8).map((item: any) => (
+          fireData.map((item: any) => (
             <Link to={`/challenge/${item.id}`}>
               <div className='post' key={item.id}>
                 <div className='postHead'>OPEN</div>
@@ -91,32 +109,20 @@ const BountyList = () => {
             </Link>
           ))
         }
-
-        <Link to={`/challenge/close1`}>
-          <div className='post'>
-            <div className='postHead closed'>CLOSED</div>
-            <div className='posted'>Some closed title</div>
-            <div className='postFoot'>
-              <div>
-                <span>Won by: someone.eth</span>
-              </div>   
-            </div>
-          </div>
-          Bounty Details
-        </Link>
-
-        <Link to={`/challenge/closed2`}>
-          <div className='post'>
-            <div className='postHead closed'>CLOSED</div>
-            <div className='posted'>close title 2</div>
-            <div className='postFoot'>
-              <div>
-                <span>Won by: someone.eth</span>
-              </div>   
-            </div>
-          </div>
-          Bounty Details
-        </Link>
+        <Bounty
+          title={'A good meme meme'}
+          endDate={'Mar. 19th/22'}
+          winner='mememonkey.eth'
+          amt='1.2 ETH'
+          image={showMeMemes}
+        />
+        <Bounty
+          title={'Making money with memes'}
+          endDate={'Mar. 16th/22'}
+          winner='mememonkey.eth'
+          amt='.5 ETH'
+          image={meme2earn}
+        />
       </div>
     </main>
   );

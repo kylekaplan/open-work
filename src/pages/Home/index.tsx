@@ -31,7 +31,7 @@ const Home = () => {
       
       <h1>MEMEiT <img src={memeit} /></h1>
 
-      <h2>The Meme-to-Earn Protocal</h2>
+      <h5>The Meme Marketplace</h5>
       
       <div className="splitter">
         <div className="bigBtn">

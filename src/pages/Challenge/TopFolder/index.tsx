@@ -45,39 +45,43 @@ const TopFold = ({
 }: TopFoldProps) => {
   // const endDate = new Date('Febuary 20, 2022 12:00:00');
   return (
-    <>
-      <h2>
-        Wanted: {title}
-      </h2>
-      <Text
-        fontSize="md"
-        fontFamily="'Poppins', sans-serif"
-      >
-        By: <Text as="span" sx={useStyleConfig('Text', { variant: 'teal' })}>{postedBy}</Text>
-      </Text>
-      <p>
-        {discription}
-      </p>
+    <main>
+      <h3>- Wanted -</h3>
+      <div className="talk-bubble">
+        <h2>{title}</h2>
+        <p>
+          {discription}
+        </p>
+      </div>
+      <div className="triangle"></div>
 
-      <Text fontSize={16}>
-        Challenge ends {endDate.toLocaleString('default', { month: 'long', day: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit', timeZone: 'EST' })} EST.
-      </Text>
-      <TimeLeft date={endDate.getTime()} />
-
-      <Text>
-        Prize:
-      </Text>
-
-      <HStack fontSize="30px">
-        <FaEthereum />
-        <Text>{prizeAmount}</Text>
-      </HStack>
+      <p className="posterPerson">By: {postedBy}</p>
+      
+      <div className="bountyBox">
+        <p>Bounty ends {
+          endDate.toLocaleString('default', { 
+            month: 'long', 
+            day: '2-digit', 
+            year: 'numeric', 
+            hour: '2-digit', 
+            minute: '2-digit', 
+            timeZone: 'EST' 
+          })} EST.
+          <hr />
+          <TimeLeft date={endDate.getTime()} />
+          </p>
+          <span>
+            REWARD
+            <br />
+            <b>{prizeAmount} ETH</b> <FaEthereum />
+          </span>
+      </div>
       
       {isWinnerSelected
         ? <ClaimButton bountyId={id} />
         : <ConnectWalletButton />
       }
-    </>
+    </main>
           
   );
 };
