@@ -71,6 +71,6 @@
     "@types/react-datepicker": "^4.3.4"
   },
   "engines": {
-    "node": ">=17.2.0"
+    "node": ">=14.0.0"
   }
 }
