@@ -48,7 +48,7 @@ const Home = () => {
 
       <h4>MemeWho? Bounty what?</h4>
       <p>
-        Memeit is a market place for memes. Whether you need a meme or are looking to make some of that ultra-sound meme money, Memeit is your one stop to take your meme game to a whole notha level. Built on the Polygon decentralized blah blah blah...
+        Memeit is a market place for memes. Whether you need a meme or are looking to make some of that ultra-sound meme money, Memeit is your one stop to take your meme game to a whole notha level.
       </p>
 
       <div className='centerer'>

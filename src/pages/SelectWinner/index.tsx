@@ -90,12 +90,8 @@ const SelectWinner = () => {
   }
 
   return (
-    <Box
-      m="0 auto"
-      padding={{ base: "30px 5px", md: "30px 40px", lg: "30px 60px", xl: "30px 80px" }}
-      maxWidth="1600px"
-    >
-      <Heading>Select Winner:</Heading>
+    <main>
+      <h3>Select Winner:</h3>
       <Box height={30} />
       <Wrap spacing={5} mt={3} mb={3}>
         {fireData.map((submission: any) => (
@@ -135,7 +131,7 @@ const SelectWinner = () => {
           Submit
         </Button>
       )}
-    </Box>
+    </main>
   )
 };
 

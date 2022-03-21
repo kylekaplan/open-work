@@ -43,9 +43,9 @@ const Challenge = ({}: ChallengeProps) => {
     return null;
   };
 
-  const endDate = new Date(fireData.endDate.seconds * 1000);
-  const startDate = new Date(fireData.startDate.seconds * 1000);
-  console.log('fireData:', fireData);
+  const endDate = new Date(fireData?.endDate?.seconds * 1000);
+  const startDate = new Date(fireData?.startDate?.seconds * 1000);
+  
   const {
     title,
     postedBy,
