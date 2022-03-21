@@ -58,17 +58,18 @@ const TopFold = ({
       <p className="posterPerson">By: {postedBy}</p>
       
       <div className="bountyBox">
-        <p>Bounty ends {
-          endDate.toLocaleString('default', { 
-            month: 'long', 
-            day: '2-digit', 
-            year: 'numeric', 
-            hour: '2-digit', 
-            minute: '2-digit', 
-            timeZone: 'EST' 
-          })} EST.
-          <hr />
-          <TimeLeft date={endDate.getTime()} />
+        <p>
+            Bounty ends {
+            endDate.toLocaleString('default', { 
+              month: 'long', 
+              day: '2-digit', 
+              year: 'numeric', 
+              hour: '2-digit', 
+              minute: '2-digit', 
+              timeZone: 'EST' 
+            })} EST.
+            <hr />
+            <TimeLeft date={endDate.getTime()} />
           </p>
           <span>
             REWARD

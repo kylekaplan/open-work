@@ -1,8 +1,8 @@
 {
-  "name": "open-work",
+  "name": "memeit",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://kylekaplan.github.io/open-work",
+  "homepage": "https://gregjohns.github.io/memeit",
   "dependencies": {
     "@chakra-ui/react": "^1.7.3",
     "@emotion/react": "^11.7.0",
