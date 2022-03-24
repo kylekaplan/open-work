@@ -1,27 +1,27 @@
 {
   "files": {
     "main.css": "/open-work/static/css/main.d8778882.chunk.css",
-    "main.js": "/open-work/static/js/main.6865f138.chunk.js",
-    "main.js.map": "/open-work/static/js/main.6865f138.chunk.js.map",
-    "runtime-main.js": "/open-work/static/js/runtime-main.1fac5d4e.js",
-    "runtime-main.js.map": "/open-work/static/js/runtime-main.1fac5d4e.js.map",
+    "main.js": "/open-work/static/js/main.b5ccabd0.chunk.js",
+    "main.js.map": "/open-work/static/js/main.b5ccabd0.chunk.js.map",
+    "runtime-main.js": "/open-work/static/js/runtime-main.7301d2b8.js",
+    "runtime-main.js.map": "/open-work/static/js/runtime-main.7301d2b8.js.map",
     "static/css/2.5528df02.chunk.css": "/open-work/static/css/2.5528df02.chunk.css",
-    "static/js/2.5126e47c.chunk.js": "/open-work/static/js/2.5126e47c.chunk.js",
-    "static/js/2.5126e47c.chunk.js.map": "/open-work/static/js/2.5126e47c.chunk.js.map",
-    "static/js/3.dec64f83.chunk.js": "/open-work/static/js/3.dec64f83.chunk.js",
-    "static/js/3.dec64f83.chunk.js.map": "/open-work/static/js/3.dec64f83.chunk.js.map",
+    "static/js/2.bbc94ce5.chunk.js": "/open-work/static/js/2.bbc94ce5.chunk.js",
+    "static/js/2.bbc94ce5.chunk.js.map": "/open-work/static/js/2.bbc94ce5.chunk.js.map",
+    "static/js/3.42be73ad.chunk.js": "/open-work/static/js/3.42be73ad.chunk.js",
+    "static/js/3.42be73ad.chunk.js.map": "/open-work/static/js/3.42be73ad.chunk.js.map",
     "index.html": "/open-work/index.html",
     "static/css/2.5528df02.chunk.css.map": "/open-work/static/css/2.5528df02.chunk.css.map",
     "static/css/main.d8778882.chunk.css.map": "/open-work/static/css/main.d8778882.chunk.css.map",
-    "static/js/2.5126e47c.chunk.js.LICENSE.txt": "/open-work/static/js/2.5126e47c.chunk.js.LICENSE.txt",
+    "static/js/2.bbc94ce5.chunk.js.LICENSE.txt": "/open-work/static/js/2.bbc94ce5.chunk.js.LICENSE.txt",
     "static/media/default-skin.css": "/open-work/static/media/default-skin.f64c3af3.svg",
     "static/media/much_wow.8624a0da.jpeg": "/open-work/static/media/much_wow.8624a0da.jpeg"
   },
   "entrypoints": [
-    "static/js/runtime-main.1fac5d4e.js",
+    "static/js/runtime-main.7301d2b8.js",
     "static/css/2.5528df02.chunk.css",
-    "static/js/2.5126e47c.chunk.js",
+    "static/js/2.bbc94ce5.chunk.js",
     "static/css/main.d8778882.chunk.css",
-    "static/js/main.6865f138.chunk.js"
+    "static/js/main.b5ccabd0.chunk.js"
   ]
 }
