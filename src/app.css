@@ -33,6 +33,7 @@ body[data-theme="dark"] {
 }
 
 body {
+  overflow-x: hidden;
   background: var(--color-main);
   color: var(--color-text-primary);
   margin: 0;
