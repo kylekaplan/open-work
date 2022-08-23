@@ -7,8 +7,8 @@ import { SiweMessage } from 'siwe';
 
 const domain = window.location.host;
 const origin = window.location.origin;
-const provider = new ethers.providers.Web3Provider(window.ethereum);
-const signer = provider.getSigner();
+// const provider = new ethers.providers.Web3Provider(window.ethereum);
+// const signer = provider.getSigner();
 
 const ConnectWalletButton = () => {
     const [isConnected, setIsConnected] = useState(false);
@@ -26,8 +26,8 @@ const ConnectWalletButton = () => {
       setIsConnectingErrorCode('');
       setIsConnectingErrorData('');
       try {
-        provider.send('eth_requestAccounts', [])
-          .catch(() => console.log('user rejected request'));
+        // provider.send('eth_requestAccounts', [])
+        //   .catch(() => console.log('user rejected request'));
       }
       catch (error) {
         console.log('error', error);
@@ -53,6 +53,8 @@ const ConnectWalletButton = () => {
     }
     
     const signInWithEthereum = async () => {
+      const provider = new ethers.providers.Web3Provider(window.ethereum);
+      const signer = provider.getSigner();
       const message = createSiweMessage(
         await signer.getAddress(),
         'Sign in with Ethereum to the app.'

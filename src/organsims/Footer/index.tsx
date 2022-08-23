@@ -13,7 +13,7 @@ const Footer = () => {
       <Text>
         View or contribute to our code on{' '}
         <Link
-          href="https://github.com/kylekaplan/open-work"
+          href="https://tryopenwork.com"
           isExternal
           textDecoration="underline"
         >

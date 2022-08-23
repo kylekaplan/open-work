@@ -11,7 +11,6 @@ import { useParams } from 'react-router-dom';
 import { useDb } from '../../hooks/useFirebase';
 import Card from '../../organsims/DisplaySubmissions/Card';
 import StoreContext from '../../store/Store/StoreContext';
-import { ethers } from 'ethers';
 
 const SelectWinner = () => {
   const db = useDb();

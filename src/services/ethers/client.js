@@ -6,7 +6,7 @@ require('dotenv').config();
 
 // A Web3Provider wraps a standard Web3 provider, which is
 // what MetaMask injects as window.ethereum into each page
-const provider = new ethers.providers.Web3Provider(window.ethereum);
+// const provider = new ethers.providers.Web3Provider(window.ethereum);
 
 
 class Client {
@@ -23,7 +23,9 @@ class Client {
     // const contract = new ethers.Contract('0xBC9129Dc0487fc2E169941C75aABC539f208fb01', OpenQABI.abi, signer);
     // const contract = new ethers.Contract('0x3450C64A1A3561A41AEF1ec4Ad949519C8dA1708', OpenQABI.abi, signer); // working for fundBonty
 		// const contract = new ethers.Contract('0x75eea904e83c81c32B33eAc833e3A742e6c6dd7b', OpenQABI.abi, signer); // added event
-		const contract = new ethers.Contract('0x832A08D6a6375B66919B00acCfcbB5dC44cb3E64', OpenQABI.abi, signer); // local
+		// const contract = new ethers.Contract('0x4F41b941940005aE25D5ecB0F01BaDbc7065E2dD', OpenQABI.abi, signer); // local
+		// const contract = new ethers.Contract('0x5095d3313C76E8d29163e40a0223A5816a8037D8', OpenQABI.abi, signer); // stardust
+		const contract = new ethers.Contract('0x832A08D6a6375B66919B00acCfcbB5dC44cb3E64', OpenQABI.abi, signer); // mumbai
 		return contract;
 	};
 
@@ -42,6 +44,7 @@ class Client {
 		const promise = new Promise(async (resolve, reject) => {
 			// const signer = library.getSigner();
 			// MetaMask requires requesting permission to connect users accounts
+			const provider = new ethers.providers.Web3Provider(window.ethereum);
 			await provider.send("eth_requestAccounts", []);
 			// const address = await provider.listAccounts()
 
@@ -72,6 +75,7 @@ class Client {
 		const promise = new Promise(async (resolve, reject) => {
 			// const signer = library.getSigner();
 			// MetaMask requires requesting permission to connect users accounts
+			const provider = new ethers.providers.Web3Provider(window.ethereum);
 			await provider.send("eth_requestAccounts", []);
 
 			// The MetaMask plugin also allows signing transactions to
@@ -97,6 +101,7 @@ class Client {
 		const promise = new Promise(async (resolve, reject) => {
 			// const signer = library.getSigner();
 			// MetaMask requires requesting permission to connect users accounts
+			const provider = new ethers.providers.Web3Provider(window.ethereum);
 			await provider.send("eth_requestAccounts", []);
 
 			// The MetaMask plugin also allows signing transactions to
@@ -123,6 +128,7 @@ class Client {
 		const promise = new Promise(async (resolve, reject) => {
 			// const signer = library.getSigner();
 			// MetaMask requires requesting permission to connect users accounts
+			const provider = new ethers.providers.Web3Provider(window.ethereum);
 			await provider.send("eth_requestAccounts", []);
 
 			// The MetaMask plugin also allows signing transactions to
@@ -178,6 +184,7 @@ class Client {
 			// const signer = library.getSigner(); // using MetaMask
 
 			// MetaMask requires requesting permission to connect users accounts
+			const provider = new ethers.providers.Web3Provider(window.ethereum);
 			await provider.send("eth_requestAccounts", []);
 
 			// The MetaMask plugin also allows signing transactions to
@@ -208,6 +215,7 @@ class Client {
 			// const signer = library.getSigner();
 
 			// MetaMask requires requesting permission to connect users accounts
+			const provider = new ethers.providers.Web3Provider(window.ethereum);
 			await provider.send("eth_requestAccounts", []);
 
 			// The MetaMask plugin also allows signing transactions to

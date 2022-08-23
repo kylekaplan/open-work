@@ -15,6 +15,7 @@ import client from '../../services/ethers/client';
 // import polygonMainnetTokens from '../../constants/polygon-mainnet-tokens.json';
 import mumbaiTokens from '../../constants/polygon-mumbai-tokens.json';
 import localTokens from '../../constants/local-tokens.json';
+import starDustTokens from '../../constants/metis-startDust-tokens.json';
 
 // // Mapping of tokens with token metadata for token address lookup
 // import polygonMainnetTokenMetadata from '../../constants/polygon-mainnet.json';
@@ -80,6 +81,17 @@ case 'development':
 // 		utils: new Utils(),
 // 	};
 // 	break;
+case 'startDust':
+	InitialState = {
+		tokenMetadata: mumbaiTokenMetadata,
+		tokens: starDustTokens,
+		client: new client(),
+		// githubRepository: new GithubRepository(),
+		// subgraphClient: new SubgraphClient(),
+		// tokenClient: new TokenClient(),
+		// utils: new Utils(),
+	};
+	break;
 default:
 	throw Error('ENVIRONMENT NOT CONFIGURED CORRECTLY. Set an environment with DEPLOY_ENV');
 }

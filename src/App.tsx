@@ -4,9 +4,12 @@ import {
   ThemeConfig,
   Box,
   Flex,
+  Heading,
+  Divider,
 } from '@chakra-ui/react'
 import {
   BrowserRouter as Router,
+  Link,
   Route,
   Routes,
 } from 'react-router-dom'
@@ -23,6 +26,7 @@ import Home from "./pages/Home"
 import NotFound from "./pages/NotFound";
 import Create from './pages/Create';
 import SelectWinner from './pages/SelectWinner';
+import List from './pages/List';
 
 
 const colors = {
@@ -109,16 +113,21 @@ const app = initializeApp(firebaseConfig);
 export const App = () => (
   <StoreProvider>
     <ChakraProvider theme={theme}>
-      <Router basename="/open-work" >
+      <Router basename="/" >
         <Box p={3}>
-          <Flex justify="end">
+          <Flex justify="space-between">
+            <Link to="/">
+              <Heading fontFamily="'Work Sans', sans-serif" size="lg" ml={3} mb={2}>Open Work</Heading>
+            </Link>
             <ColorModeSwitcher />
           </Flex>
+          <Divider />
           <Routes>
             <Route path="/" element={<Home/>}/>
             <Route path="/challenge/:id" element={<Challenge />}/>
             <Route path="/challenge/:id/select-winner" element={<SelectWinner />}/>
             <Route path="/create" element={<Create />}/>
+            <Route path="/list" element={<List />}/>
             <Route path="*" element={<NotFound/>}/>
           </Routes>
         </Box>

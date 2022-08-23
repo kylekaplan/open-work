@@ -8,16 +8,20 @@ import {
   Heading,
   Icon,
   Image,
+  HStack,
 } from "@chakra-ui/react";
 import Parallax from 'parallax-js'
 import {
-  Link
+  Link, useNavigate
 } from 'react-router-dom';
 import { AiOutlineArrowRight } from 'react-icons/ai';
 import './home.css';
 import muchWow from '../../assets/images/much_wow.jpeg';
+// import showMe from '../../assets/images/show_me_memes.jpeg';
 
 const Home = () => {
+
+  let navigate = useNavigate();
 
   useEffect(() => {
     var scene = document.getElementById('scene');
@@ -57,16 +61,29 @@ const Home = () => {
           fontWeight='extrabold'
           // fontFamily='"Baloo Bhaijaan 2"'
           className='headerText'
+          onClick={() => navigate('/')}
         >
-          Meme to Earn
+          Open Work
         </Heading>
         <Text
           color='gray.350'
           fontSize="3xl"
         >
-          The best meme wins. All memes are open source.
+          {/* The best meme wins. All memes are open source. */}
+          The original Meme to Earn platform.
         </Text>
         <Stack direction='row' spacing={4} style={{ marginTop: '30px' }}>
+          <Link to="/create">
+            <Button
+              colorScheme="teal"
+              variant='solid'
+              size="lg"
+              height='56px'
+              className="ctaButton"
+            >
+              Create Challenge
+            </Button>
+          </Link>
           <Link to="/challenge/OVyNZQZY8WqDKF7bdP6Z">
             <Button
               rightIcon={<Icon as={AiOutlineArrowRight} />}
@@ -79,7 +96,7 @@ const Home = () => {
               height='56px'
               className="ctaButton"
             >
-              Get Started
+              Start Earning
             </Button>
           </Link>
         </Stack>
