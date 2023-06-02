@@ -29,7 +29,7 @@ const Block = ({ value, label }: BlockProps) => {
 interface TimeLeftProps {
   date: number
 }
-const TimeLeft = ({ date }: TimeLeftProps) => {
+const TimeLeft = ({ date }: TimeLeftProps): JSX.Element => {
   return (
     <Countdown
       date={date}
@@ -41,7 +41,6 @@ const TimeLeft = ({ date }: TimeLeftProps) => {
             <Block value={twoDigits(minutes)} label="Minutes" />
             <Block value={twoDigits(seconds)} label="Seconds" />
           </HStack>
-          {/* {twoDigits(days)}:{twoDigits(hours)}:{twoDigits(minutes)}:{twoDigits(seconds)} */}
         </>
       )}
     />
