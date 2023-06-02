@@ -5,8 +5,6 @@ import {
 } from 'react-router-dom'
 import { initializeApp } from 'firebase/app';
 // import { getFirestore } from "firebase/firestore"
-import 'photoswipe/dist/photoswipe.css'
-import 'photoswipe/dist/default-skin/default-skin.css'
 import "react-datepicker/dist/react-datepicker.css";
 import './app.css';
 import StoreProvider from './store/Store/StoreProvider';
