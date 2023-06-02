@@ -1,4 +1,4 @@
-import { Box, DarkMode, Text } from "@chakra-ui/react";
+import { Box, Text } from "@chakra-ui/react";
 
 interface NFTViewerProps {
   title: string;
@@ -16,15 +16,13 @@ const NFTViewer = ({
 }: NFTViewerProps) => {
   console.log('in NFTViewer prizeAmo  ', prizeAmount);
   return (
-    <DarkMode>
-      <Box height="100%" bg="black" p={4}>
-        <Text><b>Title:</b> {title}</Text>
-        <Text><b>Posted by:</b> {postedBy}</Text>
-        <Text><b>Start Date:</b> {startDate.toUTCString()}</Text>
-        <Text><b>End Date:</b> {endDate.toUTCString()}</Text>
-        <Text><b>Prize amount:</b> {prizeAmount}</Text>
-      </Box>
-    </DarkMode>
+    <Box height="100%" bg="black" p={4}>
+      <Text><b>Title:</b> {title}</Text>
+      <Text><b>Posted by:</b> {postedBy}</Text>
+      <Text><b>Start Date:</b> {startDate.toUTCString()}</Text>
+      <Text><b>End Date:</b> {endDate.toUTCString()}</Text>
+      <Text><b>Prize amount:</b> {prizeAmount}</Text>
+    </Box>
   );
 }
 

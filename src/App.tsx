@@ -14,7 +14,7 @@ import NotFound from "./pages/NotFound";
 import Create from './pages/Create';
 import BountyList from './pages/Bountys';
 import SelectWinner from './pages/SelectWinner';
-import ThemeToggle from "./organsims/Theme_toggle";
+/* import ThemeToggle from "./organsims/Theme_toggle"; */
 import { Flex } from '@chakra-ui/react';
 import styled from '@emotion/styled';
 import memeit from './assets/dogey.png';
